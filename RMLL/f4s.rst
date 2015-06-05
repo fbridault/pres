@@ -42,21 +42,60 @@ Outline
 
 ----
 
+:data-y: r2000
+
+
 Introduction
 ==================================================================
 
 Presentation purpose : 
-------------------------
-- Understand why we have developed our framework
-- Show the main features available in the framework
-- Help so start developping with the framework
+________________________
+- Understand why we have developed FW4SPL
+- Show the main features available
+- Help to start developping
 
+----
+
+IRCAD context
+=================
+
+.. image:: images/context.jpg 
+           :width: 70%
+
+----
+
+:data-y: r2000
+
+IRCAD R&D team
+=================
+
+- Researchers
+- Engineers
+- Trainees/Students
+- Phd. students
+
+----
+
+:data-y: r2000
+
+IRCAD R&D needs
+=================
+
+- Quick development/prototyping on different plaforms
+- Maximal source code re-using
+- Trainees/phd (students) works integrated but fragmented
+- Facilitate collaborations (source code available or not)
+
+.. note::
+
+    - software/prototype - Windows, OSX, Linux, Android, IOs
+    - sample with image filter, something...
+    
 ----
 
 :data-rotate-x: 45
 :data-scale: 2
-:data-y: 3000
-
+:data-y: r3000
 
 Video integration test
 ===============================
@@ -67,6 +106,7 @@ Video integration test
           <source src="ogre.mp4" type="video/mp4">
           Your browser does not support the video tag.
        </video> 
+
 
 ----
 
