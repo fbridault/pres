@@ -1,36 +1,42 @@
 @import url(http://fonts.googleapis.com/css?family=Bitter);
 @import url(http://fonts.googleapis.com/css?family=Armata);
 body {
-color: #f0f2f4;
+color: #101010;
 font-family: 'Armata', sans-serif;
 font-size: 1.5em;
 
 background: url(../images/ircad_france.png) no-repeat 99% 99%,
 url(../images/ihu_couleur_grand.png) no-repeat 1% 99%;
-background-size: 10% auto, 7% auto;
-background-color: #6F8197
+background-size: 10% auto, 5% auto;
+background-color: #ececec
 }
 h1 {
 font-family: 'Bitter' , serif;
 font-weight: bold;
 text-italic: none;
 font-size: 2em;
+color: #45949d;
 }
 h2 {
+font-size: 1.25em;
 font-family: 'Bitter', serif;
+color: #ba4747;
 }
 blockquote {
 font-family: 'Bitter', serif;
 font-style: italic;
 }
 a, em {
-color: #91C5CF;
+color: #ba7575;
 text-decoration: none;
 font-weight: bold;
 }
 video {
 display: block;
 margin: 0 auto;
+}
+img {
+text-align: center;
 }
 
 #circle-no-background {
@@ -71,3 +77,40 @@ padding-right: 50px;
 padding-bottom: 10px;
 padding-left: 50px;
 }
+
+/****** Text styles ******/
+.main-color {
+color: #27B57A;
+}
+.funny-font{
+color: #727272;
+font-family: 'Lobster Two', serif;
+font-style: italic;
+}
+.big-bold {
+font-weight: bold;
+font-size: 2em;
+}
+.big-bold-color {
+font-weight: bold;
+font-size: 2em;
+color: #27B57A;
+}
+.bold-color {
+font-weight: bold;
+color: #27B57A;
+}
+.mail {
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+font-weight: bold;
+font-size: 1.5em;
+background: url('../images/Image.png') no-repeat center;
+padding-left: 25px;
+padding-top: 40px;
+padding-bottom: 40px;
+background-size: 50% auto;
+display: block;
+}
+
