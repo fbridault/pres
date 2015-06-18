@@ -35,11 +35,34 @@ FW4SPL, a framework for applications based on medical imaging.
 
 ----
 
+
+:data-y: r2000
 :data-rotate-z: 90
 
+Introduction
+==================================================================
+
+Presentation purpose : 
+***************************
+- Understand why IRCAD R&D team has developed FW4SPL
+- Explain the design behind
+- Show the main features available
+- Help to start developing
+
+----
+
+
+:data-scale: 0.9
+:data-x: 10
+
+|
+
+----
 
 Outline
 ==================================================================
+
+|
 
 - *Introduction*
 - Object/Service approach
@@ -59,18 +82,6 @@ Outline
 ----
 
 :data-y: r2000
-
-
-Introduction
-==================================================================
-
-Presentation purpose : 
-***************************
-- Understand why we have developed FW4SPL
-- Show the main features available
-- Help to start developing
-
-----
 
 IRCAD context
 =================
@@ -100,6 +111,7 @@ IRCAD R&D needs
 
 - Quick development/prototyping on different plaforms
 - Maximal source code re-using
+- Intensive use of open source libraries (boost, Qt, VTK, ITK,...) 
 - Trainees/phd (students) works integrated but fragmented
 - Facilitate collaborations (source code available or not)
 
@@ -116,7 +128,7 @@ FW4SPL characteristics
 ===========================
 
 - Object/services design
-- Component
+- Component based
 - Developed in C++
 - Multi platforms
 - Depends on many open source libraries: boost, Qt, VTK, ITK, gdcm, libxml2,...
@@ -136,9 +148,11 @@ FW4SPL history
 - 2012 : Introduction of multithreading
 - 2013 : Creation of a board (IRCAD, IHU, Visible Patient) to manage the evolution of fw4spl
 - 2013 : Creation of fw4spl external repository (for branch 0.9.1 and after)
-- 2014 : Switch to CMake for compiling
+- 2014 : Switch to CMake for building
 - 2014 : Creation of GitHub and Bitbucket repositories
 - 2014 : Partial Android support
+- 2015 : Documentation generated on ReadTheDocs.org
+- 2015 : Creation of a blog for developers
 
 .. note::
 
@@ -180,38 +194,20 @@ Outline
 
 ----
 
-:data-x: r2000
-
-:funny-font:`Contacts :`
-==================================================================
-
-this following lines insert a image among the text
-
-.. image:: images/Image01.png
-           :width: 10%
-
-
-
-----
-
 :data-y: r1000
+
+Object/Service approach
+=============================
+
+|
 
 .. image:: images/Image.png
            :width: 50%
            
-Object/Service approach
-=============================
-
            
            
 Example with an image processing
 **********************************
-
-|
-|
-|
-|
-|
 
   
   
@@ -297,7 +293,7 @@ Demonstration
 ----
 
 :data-x: -1000
-:data-scale: 1/2
+:data-scale: 0.5
 
 That's all folks!
 =================

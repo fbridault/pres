@@ -5,8 +5,8 @@ color: #101010;
 font-family: 'Armata', sans-serif;
 font-size: 1.5em;
 
-background: url(../images/ircad_france.png) no-repeat 99% 99%,
-url(../images/ihu_couleur_grand.png) no-repeat 1% 99%;
+background: url(../images/ircad_france.png) no-repeat 95% 95%,
+url(../images/ihu_couleur_grand.png) no-repeat 5% 95%;
 background-size: 10% auto, 5% auto;
 background-color: #ececec
 }
