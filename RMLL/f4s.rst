@@ -47,6 +47,7 @@ Presentation purpose :
 
 ----
 
+:class: square-background
 :data-y: r1500
 
 Outline
@@ -229,12 +230,14 @@ FW4SPL history
 
 ----
 
+:data-y: r1500
+
 FW4SPL board
 =================
 
-- IRCAD
-- IHU
-- Visible Patient
+- IRCAD `<http://www.ircad.fr>`_
+- IHU  `<http://www.ihu-strasbourg.eu>`_
+- Visible Patient `<http://www.visiblepatient.com>`_
 
 ----
 
@@ -252,6 +255,7 @@ UPDATE THAT
 
 ----
 
+:class: square-background
 :data-x: r1500
 :data-rotate-z: r90
 
@@ -292,7 +296,7 @@ Classic approach
 
 ----
 
-:id: center1
+:class: centered
 :data-y: r500
 :data-scale: 0.45
 
@@ -303,7 +307,7 @@ Classic approach
 
 ----
 
-:id: center2
+:class: centered
 :data-y: r300
 
 
@@ -336,7 +340,7 @@ Classic approach
     
 ----
 
-:id: center3
+:class: centered
 :data-scale: 0.45
 :data-x: r1100
 :data-y: r-200
@@ -358,19 +362,53 @@ Classic approach
     void cropImageWithItk( ... )
     {
         // Convert our data to an itk image
-        Itk::Image imgIn = itkHelper::getItkImage(m_buffer, m_size);
+        Itk::Image imgIn = itkHelper::getImage(m_buffer, m_size);
 
         // Crop an img using library itk 
         // ...
 
-        // Convert itk image data in our data
+        // Convert itk image data in our format
         m_buffer = itkHelper::getBuffer(imgOut);
         m_size = itkHelper::getSize(imgOut );
     }
 
 ----
 
-:id: center4
+:class: centered
+:data-scale: 0.45
+:data-x: r1300
+:data-y: r-200
+
+.. image:: images/Image03.png
+           :width: 80%
+
+----
+
+:data-y: r220
+:data-scale: 1
+
+|
+|
+|
+
+.. code:: c++
+
+    void windowingImageWithOpenCV( ... )
+    {
+        // Convert our data to a OpenCV image
+        OpenCV::Image imgIn = openCVHelper::getImage(m_buffer, m_size);
+
+        // Apply windowing using OpenCV
+        // ...
+
+        // Convert openCV image data in our format
+        m_buffer = openCVHelper::getBuffer(imgOut);
+        m_size = openCVHelper::getSize(imgOut);
+    }
+
+----
+
+:class: centered
 :data-scale: 0.45
 :data-x: r1400
 :data-y: r-200
@@ -407,6 +445,7 @@ Classic approach
     Image* img = new Image();
     img->readFromPacsWithDcmtk( patientInfo, pacsInfo );
     img->cropWithItk( cropParam );
+    img->windowingImageWithOpenCV( windowParam );
     img->visuWithVtkAndQt( visuParam );
 
 |
@@ -438,7 +477,7 @@ Solution
 
 ----
 
-:id: center5
+:class: centered
 :data-scale: 1
 :data-x: r1000
 :data-y: r-200
@@ -461,13 +500,174 @@ Solution
 
 .. code:: c++
 
-    Image * img = new Image ();
+    Image* img = new Image();
     DcmtkHelper::readFromPacs(img, patientInfo, pacsInfo);
     ItkHelper::crop(img, cropParam);
+    OpenCVHelper::window(img , windowParam);
     VtkQtHelper::visu(img, visuParam);
 
 ----
 
+:class: centered
+:data-scale: 1
+:data-x: r1500
+:data-y: r-200
+
+*Helpers can be instantiated*
+
+.. image:: images/helper02.png
+           :width: 120%
+
+----
+
+:data-y: r300
+:data-scale: 1
+
+|
+|
+|
+
+.. code:: c++
+
+    Image* img = new Image();
+    VtkQtHelper* visuHelper = new VtkQtHelper();
+    visuHelper->initVisu(img, visuParam);
+    
+    DcmtkHelper::readFromPacs(img, patientInfo, pacsInfo);
+    visuHelper->refresh();
+    
+    ItkHelper::crop(img, cropParam);
+    visuHelper->refresh();
+    
+    OpenCVHelper::window(img, windowParam);
+    visuHelper->refresh();
+    
+    
+    
+----
+
+:class: centered
+:data-scale: 0.8
+:data-x: r1500
+:data-y: r-200
+
+*Group helpers by type*
+
+.. image:: images/helper03.png
+           :width: 130%
+
+----
+
+:data-y: r530
+:data-scale: 1
+
+|
+|
+|
+
+.. code:: c++
+
+    Image* img = new Image();
+    
+    IVisu * visu = new VtkQtVisu();
+    visu->setVisuParam(img, visuParam );
+    visu->init();
+    
+    IReader* reader = new DcmtkReader();
+    reader->setReaderParam(img, patientInfo, pacsInfo );
+    reader->read();
+    
+    IOperator* op1 = new ItkCropOperator();
+    op1->setOperatorParam(img, cropParam);
+    op1->compute();
+    visu->refresh();
+    
+    IOperator* op2 = new OpenCVWindowOperator();
+    op2->setOperatorParam(img, windowParam);
+    op2->compute();
+    visu->refresh();
+    
+----
+
+:class: centered
+:data-scale: 0.8
+:data-x: r1500
+:data-y: r-200
+
+*Common interface for all services*
+
+.. image:: images/IService01.png
+           :width: 60%
+
+----
+
+:class: li1
+:data-y: r380
+:data-scale: 1
+
+- setObject(obj) : set the object associated
+- setConfiguration(cfg) : set the service parameters
+- configure() : verify parameters and configure service
+- start() : init/launch the service
+- update() : compute data, refresh, etc
+- stop() : close the service
+
+----
+
+:class: centered
+:data-scale: 1
+:data-x: r1500
+:data-y: r-200
+
+*Group helpers by type*
+
+.. image:: images/IService02.png
+           :width: 120%
+       
+----
+
+:data-scale: 0.18
+:data-x: r-50
+:data-y: r350
+
+DcmtkReaderSrv
+================
+    
+- setConfiguration(cfg) : set a string that represents the url on network
+- configure() : verifies if url is ok
+- start() : do nothing
+- update() : read the data ( equivalent to **readImageFromPacsWithDcmtk()** )
+- stop() : do nothing
+
+----
+
+:data-x: r165
+
+ItkCropOperatorSrv
+===================
+    
+- setConfiguration(cfg) : set a cropping region
+- configure() : verifies if the cropping region is valid
+- start() : do nothing
+- update() : compute the cropping on image and set the new data (equivalent to **cropImageWithItk** )
+- stop() : do nothing
+
+----
+
+:data-x: r360
+
+VtkQtVisuSrv
+===================
+    
+- setConfiguration(cfg) : set title and window size
+- configure() : verifies if the screen support this size
+- start() : initialize Qt frame and vtk pipeline and show the frame (image is not shown if image buffer is null )
+- update() : check if the buffer has be changed, if true, refresh the vtk pipeline to show negato
+- stop() : destroy vtk pipeline and uninitialize Qt frame.
+
+----
+
+:class: square-background
 :data-y: r1500
 :data-rotate-z: 90
 
@@ -501,6 +701,7 @@ Component
 
 ----
 
+:class: square-background
 :data-y: r1500
 :data-rotate-z: 180
 
@@ -535,6 +736,7 @@ Visualization
 
 ----
 
+:class: square-background
 :data-y: r-10500
 :data-rotate-z: 270
 
@@ -587,7 +789,7 @@ Current stable version
 Current development version
 ******************************
 - 0.10.2
-- Strongly advised for new software
+- Strongly advised for new software (communication API is simpler)
 - For now need patches repositories, only available on bitbucket
 
 .. code:: bash
@@ -622,8 +824,8 @@ Main repository
 - data I/O (JSON, DICOM (gdcm), VTK)
 - 2D rendering (Qt)
 - 3D rendering (VTK)
-- Tutorials
-- VRRender
+- Tutorials (VIDEO)
+- VRRender (VIDEO)
 
 ----
 
@@ -640,8 +842,8 @@ Augmented reality repository
 
 - Video player (**QtMultimedia**): file, camera or network
 - Tag-based video tracking (**Aruco**, **OpenCV**)
-- *ARCalibration* : Camera calibration
-- *VideoTracking* : Video tracking
+- *ARCalibration* : Camera calibration (VIDEO)
+- *VideoTracking* : Video tracking (VIDEO)
 
 .. note::
     - VideoTracking requires a calibration
