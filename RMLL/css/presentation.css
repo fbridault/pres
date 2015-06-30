@@ -140,3 +140,9 @@ color: #27B57A;
 .code{
 font-size: 1.2em;
 }
+.legend{
+font-size: 2.0em;
+font-weight: bold;
+text-align: center;
+line-height: 0;
+}

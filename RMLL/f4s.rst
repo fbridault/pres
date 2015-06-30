@@ -75,46 +75,83 @@ Outline
 IRCAD context
 =================
 
-.. image:: images/context.png 
-           :width: 70%
+.. image:: images/patient.png 
+           :width: 30%
 
 ----
 
-:data-x: r50
+:data-x: r-300
+:data-y: r-300
 :data-scale: 0.4
 
-----
 
-:data-x: r-50
-:data-y: r-150
+.. raw:: html
 
-----
-
-:data-x: r-100
-
-----
-
-:data-x: r-100
-:data-y: r50
+       <div class="legend">Viewer</div>
+       <video width="800" height="600">
+          <source src="../git/RMLL/videos/VRMedNegato2D3D.mp4" >
+          Your browser does not support the video tag.
+       </video>
 
 ----
 
-:data-y: r150
+:data-x: r-270
+      
 
+.. raw:: html
+
+       <div class="legend">Segmentation/3D models</div>
+       <video width="800" height="600">
+          <source src="../git/RMLL/videos/TeaserVisiblePatient2012.mp4" >
+          Your browser does not support the video tag.
+       </video>
+           
 ----
 
-:data-x: r100
-:data-y: r100
+:data-x: r-270
+:data-y: r300
 
+
+.. raw:: html
+
+       <div class="legend">Planning</div>
+       <video width="800" height="600">
+          <source src="../git/RMLL/videos/TeaserVisiblePatient2012.mp4" >
+          Your browser does not support the video tag.
+       </video>
+       
 ----
 
-:data-x: r100
+:data-x: r270
+:data-y: r300
 
+.. raw:: html
+
+       <div class="legend">Simulation</div>
+       <video width="800" height="600">
+          <source src="../git/RMLL/videos/digitalTrainersSimu1.mov" >
+          Your browser does not support the video tag.
+       </video>
+       
+       
 ----
 
-:data-x: r-50
-:data-y: r-100
-:data-scale: 1
+:data-x: r270
+
+
+.. raw:: html
+
+       <div class="legend">Augmented reality</div>
+       <video width="800" height="600">
+          <source src="../git/RMLL/videos/rdARinteractive1.mov" >
+          Your browser does not support the video tag.
+       </video>
+       
+----
+
+:data-x: r-200
+:data-y: r-300
+:data-scale: 1.2
 
 ----
 
@@ -123,12 +160,16 @@ IRCAD context
 IRCAD R&D team
 =================
 
+
+.. image:: images/team.jpg
+           :width: 80%
+
 - Researchers (3)
 - Engineers (7)
 - Phd. students (3)
 - Trainees (6)
-- Internships (4)
-
+- Internships (4) 
+   
 ----
 
 IRCAD R&D needs
@@ -154,8 +195,9 @@ FW4SPL characteristics
 - Component based
 - Developed in C++
 - Applications built in XML
-- Multi platforms
-- Depends on many open source libraries: boost, Qt, VTK, ITK, gdcm, libxml2,...
+- Multi platforms (Windows, Linux, OSX, Android)
+- Depends on many open source libraries: boost, Qt, VTK, ITK, gdcm, dcmtk, libxml2,...
+- Licensed under LGPL
 
 ----
 
@@ -172,7 +214,7 @@ FW4SPL history
 
 ----
 
-:data-x: r-580
+:data-x: r-700
 
 - 2013 : Creation of fw4spl external repository (for branch 0.9.1 and after)
 - 2014 : Switch to **CMake** for building
@@ -187,10 +229,21 @@ FW4SPL history
 
 ----
 
+FW4SPL board
+=================
+
+- IRCAD
+- IHU
+- Visible Patient
+
+----
+
 :data-y: r1500
 
 FW4SPL statistics
 =============================
+
+UPDATE THAT
 
 - Applications: 35 (PoC and Tutorials)
 - Bundles: 52 (57 on private repository)
@@ -271,21 +324,21 @@ Classic approach
 
     void readImageFromPacsWithDcmtk( ... )
     {
-        // Code to load an image using dcmtk
+        // Load an image using dcmtk
         Dcmtk::Image img;
         
         // ...
 
-        // Code to convert dcmtk image data in our own format
-        m_buffer = dcmtkHelper::getBuffer( img );
-        m_size = dcmtkHelper::getSize( img );
+        // Convert dcmtk image data in our format
+        m_buffer = dcmtkHelper::getBuffer(img);
+        m_size = dcmtkHelper::getSize(img);
     }
     
 ----
 
 :id: center3
 :data-scale: 0.45
-:data-x: r1000
+:data-x: r1100
 :data-y: r-200
 
 .. image:: images/Image02.png
@@ -293,7 +346,7 @@ Classic approach
 
 ----
 
-:data-y: r200
+:data-y: r220
 :data-scale: 1
 
 |
@@ -304,22 +357,22 @@ Classic approach
 
     void cropImageWithItk( ... )
     {
-        // Code to convert our data to an itk image
-        Itk::Image imgIn = itkHelper::getItkImage( m_buffer, m_size );
+        // Convert our data to an itk image
+        Itk::Image imgIn = itkHelper::getItkImage(m_buffer, m_size);
 
-        // Code using library itk to crop an img
+        // Crop an img using library itk 
         // ...
 
-        // Code to convert itk image data in our data
-        m_buffer = itkHelper::getBuffer( imgOut );
-        m_size = itkHelper::getSize( imgOut );
+        // Convert itk image data in our data
+        m_buffer = itkHelper::getBuffer(imgOut);
+        m_size = itkHelper::getSize(imgOut );
     }
 
 ----
 
 :id: center4
 :data-scale: 0.45
-:data-x: r1100
+:data-x: r1400
 :data-y: r-200
 
 .. image:: images/Image04.png
@@ -338,16 +391,15 @@ Classic approach
 
     void visuWithVtkAndQt( ... )
     {
-        // Code to convert our data to a vtk image
-        Vtk::Image img = vtkHelper::getVtkImage( m_buffer, m_size );
+        // Convert our data to a vtk image
+        Vtk::Image img = vtkHelper::getVtkImage(m_buffer, m_size);
 
-        // Code using library vtk and Qt to
-        // open a Qt frame and show a negato
+        // Open a Qt frame and show a negato using vtk and Qt
     }
 
 ----
 
-:data-scale: 0.9
+:data-scale: 0.7
 :data-y: r-350
 
 .. code:: c++
@@ -387,7 +439,7 @@ Solution
 ----
 
 :id: center5
-:data-scale: 0.7
+:data-scale: 1
 :data-x: r1000
 :data-y: r-200
 
@@ -396,7 +448,7 @@ Solution
 *Helpers are static methods*
 
 .. image:: images/helper01.png
-           :width: 100%
+           :width: 120%
 
 ----
 
@@ -410,23 +462,22 @@ Solution
 .. code:: c++
 
     Image * img = new Image ();
-    DcmtkHelper :: readFromPacs ( img , patientInfo , pacsInfo );
-    ItkHelper :: crop ( img , cropParam );
-    CImgHelper :: window ( img , windowParam );
-    VtkQtHelper :: visu ( img , visuParam );
+    DcmtkHelper::readFromPacs(img, patientInfo, pacsInfo);
+    ItkHelper::crop(img, cropParam);
+    VtkQtHelper::visu(img, visuParam);
 
 ----
 
 :data-y: r1500
-:data-rotate-z: r90
+:data-rotate-z: 90
 
 
 Outline
 ==================================================================
 
-- *Introduction*
+- Introduction
 - Object/Service approach
-- Component based approach
+- *Component based approach*
 - Framework features
 - Community
 
@@ -441,19 +492,169 @@ Outline
     
 ----
 
-:data-rotate-x: 45
-:data-scale: 2
-:data-y: r3000
+:data-y: r1500
 
-Demonstration
-===============================
+Component
+===========
+- blabla
+- blablablba
 
-.. raw:: html
+----
 
-       <video width="800" height="600" controls>
-          <source src="ogre.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-       </video> 
+:data-y: r1500
+:data-rotate-z: 180
+
+Outline
+==============================
+
+- Introduction
+- Object/Service approach
+- Component based approach
+- *Framework features*
+- Community
+
+.. note::
+
+    - Introduction - 5min
+    - Object/Service approach - 10 min
+    - Component based approach - 5min
+    - Framework features -5min 
+    - Community - 10min
+    - Conclusion - 5min
+    
+    
+----
+
+:data-x: r-1500
+
+Visualization
+===================
+
+- Negato 2D/3D
+- Generic scene
+
+----
+
+:data-y: r-10500
+:data-rotate-z: 270
+
+Outline
+==================================================================
+
+- Introduction
+- Object/Service approach
+- Component based approach
+- Framework features
+- *Community*
+
+.. note::
+
+    - Introduction - 5min
+    - Object/Service approach - 10 min
+    - Component based approach - 5min
+    - Framework features -5min 
+    - Community - 10min
+    - Conclusion - 5min
+    
+----
+
+:data-y: r-1500
+
+Where can I find documentation ?
+========================================
+
+- Documentation `<http://fw4spl-doc.readthedocs.org/>`_
+- Developper blog `<http://fw4spl-org.github.io/fw4spl-blog/>`_ 
+
+----
+
+Where can I download FW4SPL ?
+==============================
+
+- Github : `<https://github.com/fw4spl-org>`_
+- BitBucket : `<https://bitbucket.org/fw4splorg>`_
+- Do not use the obsolete googlecode page `<https://code.google.com/p/fw4spl/>`_ 
+
+----
+
+Which version to use ?
+=========================
+
+Current stable version
+**************************
+- 0.10.1
+
+Current development version
+******************************
+- 0.10.2
+- Strongly advised for new software
+- For now need patches repositories, only available on bitbucket
+
+.. code:: bash
+
+    hg qclone https://bitbucket.org/fw4splorg/fw4spl-patches
+
+----
+
+Repositories
+================
+
+Dependencies
+*************
+
+- Main : *fw4spl-deps*
+- Extended : *fw4spl-deps-ext*
+- Augmented reality : *fw4spl-deps-ar*
+
+Sources
+*************
+
+- Main : *fw4spl*
+- Extended : *fw4spl-ext*
+- Augmented : *fw4spl-ar*
+
+----
+
+Main repository
+================
+
+- Basic data (Float, Integer, String, Image, Mesh,... )
+- data I/O (JSON, DICOM (gdcm), VTK)
+- 2D rendering (Qt)
+- 3D rendering (VTK)
+- Tutorials
+- VRRender
+
+----
+
+Extended repository
+=====================
+
+- Timeline data
+- data I/O (DICOM (dcmtk))
+
+----
+
+Augmented reality repository
+=============================
+
+- Video player (**QtMultimedia**): file, camera or network
+- Tag-based video tracking (**Aruco**, **OpenCV**)
+- *ARCalibration* : Camera calibration
+- *VideoTracking* : Video tracking
+
+.. note::
+    - VideoTracking requires a calibration
+
+----
+
+Repositories
+================
+
+In September 2015
+**************************
+
+- Ogre3D integration : *fw4spl-Ogre3d*
 
 
 
