@@ -55,16 +55,16 @@ Outline
 
 - *Introduction*
 - Object/Service approach
+- Communication
 - Component based approach
-- Framework features
 - Community
 
 .. note::
 
     - Introduction - 5min
     - Object/Service approach - 10 min
+    - Communication -5min 
     - Component based approach - 5min
-    - Framework features -5min 
     - Community - 10min
     - Conclusion - 5min
 
@@ -106,7 +106,7 @@ IRCAD context
           <source src="../git/RMLL/videos/TeaserVisiblePatient2012.mp4" >
           Your browser does not support the video tag.
        </video>
-           
+
 ----
 
 :data-x: r-270
@@ -120,7 +120,7 @@ IRCAD context
           <source src="../git/RMLL/videos/TeaserVisiblePatient2012.mp4" >
           Your browser does not support the video tag.
        </video>
-       
+
 ----
 
 :data-x: r270
@@ -265,7 +265,7 @@ Outline
 - Introduction
 - *Object/Service approach*
 - Component based approach
-- Framework features
+- Communication
 - Community
 
 .. note::
@@ -273,7 +273,7 @@ Outline
     - Introduction - 5min
     - Object/Service approach - 10 min
     - Component based approach - 5min
-    - Framework features - 10min 
+    - Communication - 10min 
     - Community - 5min
     - Conclusion - 5min
 
@@ -626,15 +626,15 @@ Solution
        
 ----
 
-:data-scale: 0.18
+:data-scale: 0.15
 :data-x: r-50
-:data-y: r350
+:data-y: r360
 
 DcmtkReaderSrv
 ================
     
 - setConfiguration(cfg) : set a string that represents the url on network
-- configure() : verifies if url is ok
+- configure() : verify if url is ok
 - start() : do nothing
 - update() : read the data ( equivalent to **readImageFromPacsWithDcmtk()** )
 - stop() : do nothing
@@ -647,7 +647,7 @@ ItkCropOperatorSrv
 ===================
     
 - setConfiguration(cfg) : set a cropping region
-- configure() : verifies if the cropping region is valid
+- configure() : verify if the cropping region is valid
 - start() : do nothing
 - update() : compute the cropping on image and set the new data (equivalent to **cropImageWithItk** )
 - stop() : do nothing
@@ -660,10 +660,245 @@ VtkQtVisuSrv
 ===================
     
 - setConfiguration(cfg) : set title and window size
-- configure() : verifies if the screen support this size
+- configure() : verify if the screen support this size
 - start() : initialize Qt frame and vtk pipeline and show the frame (image is not shown if image buffer is null )
 - update() : check if the buffer has be changed, if true, refresh the vtk pipeline to show negato
 - stop() : destroy vtk pipeline and uninitialize Qt frame.
+
+----
+
+:data-x: r-260
+:data-y: r160
+
+Program
+===================
+
+.. code:: c++
+
+    Object* img = new Image();
+    IService* visu = new VtkQtVisuSrv();
+    visu->setObject( img );
+    visu->setConfiguration( visuParam );
+    visu->start();
+    
+    IService* reader = new DcmtkReaderSrv ();
+    reader->setObject( img );
+    reader->setConfiguration( readerParam );
+    reader->start();
+    reader->update();
+    visu->update();
+    
+    IService* op1 = new ItkCropOperatorSrv ();
+    op1->setObject( img );
+    op1->setConfiguration ( cropParam );
+    op1->start();
+    op1->update();
+    visu->update();
+    
+    IService* op2 = new OpenCVWindowOperatorSrv();
+    ...
+
+.. note::
+    - And now ? What's the next step
+    
+----
+
+:class: text-small
+:data-y: r600
+:data-scale: 1
+
+Use the factory pattern...
+================================
+
+.. code:: c++
+
+    IService* Factory::createServiceInstance(const char* implName)
+    {
+        if ( implName == "DcmtkReaderSrv" )
+        {
+            return new DcmtkReaderSrv();
+        }
+        else if ( implName == "ItkReaderSrv" )
+        {
+            return new ItkReaderSrv();
+        }
+        else if
+        {
+            // ...
+        }
+    }
+    
+----
+
+:class: text-small
+:data-y: r500
+
+.. code:: c++
+
+    void main(int argc, char *argv[])
+    {
+        string srvReaderImpl ( argv[1] );
+        string imgPath ( argv[2] );
+        
+        Object* img = new Image();
+
+        // Call to the Factory
+        IService* reader = Factory::createServiceInstance( srvReaderImpl );
+        
+        reader->setObject( img );
+        reader->setConfiguration( imgPath );
+        reader->configure(); // check if the path is correct
+        reader->start(); // a service must be start before updating it
+        reader->update(); // read image
+
+        // ...
+        reader->stop();
+    }
+    
+----
+
+:class: text-small
+:data-x: r1200
+
+Factory for the object creation
+================================
+
+.. code:: c++
+
+    void main(int argc, char *argv[])
+    {
+        string objImpl ( argv[1] );
+        string srvImpl ( argv[2] );
+        string config  ( argv[3] );
+        
+        Object * obj = Factory::createObjectInstance( objImpl );
+        IService * srv = Factory::createServiceInstance( srvImpl );
+        srv->setObject( obj );
+        srv->setConfiguration( config );
+        srv->configure();
+        srv->start();
+        srv->update();
+        srv->stop();
+
+        // ...
+    }
+    
+----
+
+:class: text-small
+:data-x: r1200
+
+Example with reader and visualization
+======================================
+
+.. code:: c++
+
+    void main(int argc, char *argv[])
+    {
+        string objImpl ( argv[1] );
+
+        string srvImpl1 ( argv[2] ); // Reader
+        string srvCfg1  ( argv[3] );
+
+        string srvImpl2 ( argv[4] ); // Visu
+        string srvCfg2  ( argv[5] );
+        
+        Object * obj = Factory::createObjectInstance( objImpl );
+        
+        IService * srv1 = Factory::createServiceInstance( srvImpl1 );
+        srv1->setConfiguration( srvCfg1 );
+        srv1->configure();
+        srv1->start();  // Start reader ( do nothing )
+
+        IService * srv2 = Factory::createServiceInstance( srvImpl2 );
+        srv2->setConfiguration( srvCfg2 );
+        srv2->configure();
+        srv2->start(); // Start Visu
+
+        srv1->update(); // Read image on filesystem
+        srv2->update(); // Refresh vusalisation with the new image buffer
+        // ...
+        srv1->stop();
+        srv2->stop();
+    }
+    
+    
+----
+
+Last step
+======================================
+
+*Declaring objects and services from the command line is not really convenient...*
+
+- Grab all objects and services from a file
+- XML syntax
+
+
+----
+
+XML based launcher
+======================================
+
+.. code:: c++
+
+    void main(int argc, char *argv[])
+    {
+        string xmlAppConfigPath = argv[1];
+
+        XmlConfigManager xcm ( xmlAppConfigPath );
+        
+        xcm->createObjectsAndServices();
+        xcm->startServices();
+        xcm->updateServices();
+    }
+    
+----
+
+:class: text-small
+
+XML configuration file
+======================================
+
+.. code:: xml
+
+    <object type="::fwData::Image">
+
+        <service uid="myFrame" impl="DefaultFrame" type="IFrame" >
+            <gui>
+                <frame>
+                    <minSize width="800" height="600" />
+                </frame>
+            </gui>
+            <registry>
+                <view uid="myVisu" />
+            </registry>
+        </service>
+
+        <service uid="myVisu" impl="vtkSimpleNegatoRenderer" type="IRender" />
+        
+        <service uid="myReader" impl="VtkImageReader" type="IReader" >
+            <filename path="./TutoData/patient1.vtk"/>
+        </service>
+
+        <start uid="myFrame" />
+        <start uid="myVisu"/>
+        <start uid="myReader"/>
+
+        <update uid="myReader"/>    <!-- Read the image on filesystem -->
+        <update uid="myVisu"/>      <!-- Refresh the visu -->
+
+    </object>
+    
+----
+
+Problem
+==============
+
+Now the reader must be called by UI
+****************************************************
+
+- We can no longer call **update()** from the xml
+- *How to automate the call ?*
 
 ----
 
@@ -671,34 +906,118 @@ VtkQtVisuSrv
 :data-y: r1500
 :data-rotate-z: 90
 
-
 Outline
-==================================================================
+==============================
 
 - Introduction
 - Object/Service approach
-- *Component based approach*
-- Framework features
-- Community
+- *Communication*
+- Component based approach
+- Getting started
 
 .. note::
 
     - Introduction - 5min
     - Object/Service approach - 10 min
+    - Communication -5min 
     - Component based approach - 5min
-    - Framework features -5min 
     - Community - 10min
     - Conclusion - 5min
+    
     
 ----
 
 :data-y: r1500
 
-Component
-===========
-- blabla
-- blablablba
+Communication
+===================
 
+- *Signals/Slots*
+    - Data -> Service
+    - Service <-> Service
+- Introduced in 0.9.2
+- Replace the old messaging system
+- Will be the only mechanism after 0.10.2
+
+----
+
+Features
+===================
+
+- Signal emission is either:
+    - synchronous
+    - asynchronous
+- A slot can be executed on a specific worker thread
+
+----
+
+:class: centered
+
+.. image:: images/sigslot.png
+           :width: 100%
+           :align: center
+           
+|
+|
+|
+|
+|
+|
+
+----
+
+:class: text-small
+:data-x: r-10
+:data-y: r-150
+:data-scale: 0.6
+
+.. code:: c++
+
+    void DcmtkReaderSrv::update()
+    {
+        // Load an image using dcmtk
+        Dcmtk::Image img;
+        ... 
+        
+        Image* img = this->getObject<Image>();
+        
+        // Convert dcmtk image data in our format
+        img->createImage(img, size);
+        
+        // Emit the signal "modified"
+        Signal* sig = img->signal("modified");
+        sig->asyncEmit();
+    }
+      
+----
+
+:class: text-small
+:data-x: r-40
+:data-y: r350
+
+.. code:: xml
+
+    <object uid="imageUID" type="::fwData::Image">
+        
+        ...
+
+        <service uid="myVisu" impl="vtkSimpleNegatoRenderer" type="IRender" />
+        
+        <service uid="myReader" impl="VtkImageReader" type="IReader" >
+            <filename path="./TutoData/patient1.vtk"/>
+        </service>
+        
+        <start uid="myFrame" />
+        <start uid="myVisu"/>
+        <start uid="myReader"/>
+
+        <connect>
+            <slot>imageUID/modified</slot>
+            <signal>myVisu/update</signal>
+        </connect>
+            
+    </object>
+    
 ----
 
 :class: square-background
@@ -706,38 +1025,126 @@ Component
 :data-rotate-z: 180
 
 Outline
-==============================
+================================
 
 - Introduction
 - Object/Service approach
-- Component based approach
-- *Framework features*
+- Communication
+- *Component based approach*
 - Community
+- Conclusion
 
 .. note::
 
     - Introduction - 5min
     - Object/Service approach - 10 min
+    - Communication -5min 
     - Component based approach - 5min
-    - Framework features -5min 
     - Community - 10min
     - Conclusion - 5min
-    
     
 ----
 
 :data-x: r-1500
 
-Visualization
-===================
+Component based approach
+========================
 
-- Negato 2D/3D
-- Generic scene
+Benefits
+***********
+
+- Reuse code in another application, without recompiling your program
+- Easier support (ex: correction of bug) of your program
+- Easier collaborative work
+- To split code and to improve external dependencies management (vtk, itk, qt, wx, ...)
+
+----
+
+Examples
+========================
+
+- Eclipse
+- Applications with plugins (Firefox)
+- More !
+
+----
+
+Component in FW4SPL
+========================
+
+- Group services, by thema and/or by dependency
+- Also called *Bundle*
+- Examples: 
+    - **ioITK**: reading/writing image or mesh data with ITK formats
+    - **uiImageQt**: user interface controls using Qt to manipulate images
+
+----
+
+Content of a Bundle
+========================
+
+- Xml description file ( plugin.xml ) to describe the content of the dynamic library
+- Dynamic libraries ( .so, .dll, .dylib)
+- Other shared resources ( icons, sounds, ... )
+
+----
+
+:class: text-small
+
+Extract of plugin.xml (ioITK)
+==============================
+
+.. code:: xml
+
+    <plugin id="ioITK" class="ioITK::Plugin">
+        <library name="ioITK" />
+
+        <requirement id="io" />
+        <requirement id="gui" />
+
+        <extension implements="::fwServices::registry::ServiceFactory">
+            <type>::io::IReader</type>
+            <service>::ioITK::InrImageReaderService</service>
+            <object>::fwData::Image</object>
+            <desc>Inrimage Reader (ITK/Ircad)</desc>
+        </extension>
+
+        <extension implements="::fwServices::registry::ServiceFactory">
+            <type>::io::IWriter</type>
+            <service>::ioITK::InrImageWriterService</service>
+            <object>::fwData::Image</object>
+            <desc>Inrimage Writer (ITK/Ircad)</desc>
+        </extension>
+
+        <extension implements="::fwServices::registry::ServiceFactory">
+            <type>::io::IWriter</type>
+            <service>::ioITK::JpgImageWriterService</service>
+            <object>::fwData::Image</object>
+            <desc>Jpeg Writer (ITK)</desc>
+        </extension>
+        ...
+    </plugin>
+
+.. note::
+    - This shows how to register services in the factory
+    - Don't talk about extension points
+    
+----
+
+Example : I/O Bundles
+==============================
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../git/RMLL/videos/component.mp4" >
+          Your browser does not support the video tag.
+       </video>
 
 ----
 
 :class: square-background
-:data-y: r-10500
+:data-y: r-20500
 :data-rotate-z: 270
 
 Outline
@@ -745,22 +1152,64 @@ Outline
 
 - Introduction
 - Object/Service approach
+- Communication
 - Component based approach
-- Framework features
-- *Community*
+- *Discussion*
+- Getting started
 
 .. note::
 
     - Introduction - 5min
     - Object/Service approach - 10 min
+    - Communication -5min 
     - Component based approach - 5min
-    - Framework features -5min 
     - Community - 10min
     - Conclusion - 5min
     
 ----
 
 :data-y: r-1500
+
+Discussion
+================================
+
+*We have introduced services*
+
+**Cons**
+
+- Think design differently
+- Need to write a new class for each new function
+
+**Pros**
+
+- Far less coupling !
+- No need for a public and private API
+
+----
+
+*How to share common code ?*
+
+- We still have regular shared libraries
+
+----
+
+:class: square-background
+:data-rotate-z: 90
+:data-x: r1500
+
+Outline
+==================================================================
+
+- Introduction
+- Object/Service approach
+- Communication
+- Component based approach
+- Discussion
+- *Getting started*
+
+----
+
+:data-y: r1500
 
 Where can I find documentation ?
 ========================================
@@ -821,19 +1270,47 @@ Main repository
 ================
 
 - Basic data (Float, Integer, String, Image, Mesh,... )
-- data I/O (JSON, DICOM (gdcm), VTK)
+- GUI (Qt)
+- Data I/O (JSON, DICOM (gdcm), VTK, Inr)
 - 2D rendering (Qt)
 - 3D rendering (VTK)
-- Tutorials (VIDEO)
-- VRRender (VIDEO)
+- Around 15 tutorials
 
 ----
+
+:data-x: r-300
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../git/RMLL/videos/tutos.mp4" >
+          Your browser does not support the video tag.
+       </video>
+       
+- Medical images viewer : **VR-Render**
+
+----
+
+:data-x: r-350
+
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../git/RMLL/videos/vrrender.mp4" >
+          Your browser does not support the video tag.
+       </video>
+
+----
+
+:data-y: r1500
 
 Extended repository
 =====================
 
 - Timeline data
-- data I/O (DICOM (dcmtk))
+- OpenIGTLink support
+- DICOM (dcmtk)
 
 ----
 
