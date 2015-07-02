@@ -1278,7 +1278,7 @@ Main repository
 
 ----
 
-:data-x: r-300
+:data-x: r-320
 
 .. raw:: html
 
@@ -1309,23 +1309,63 @@ Extended repository
 =====================
 
 - Timeline data
-- OpenIGTLink support
 - DICOM (dcmtk)
+- OpenIGTLink support
 
 ----
+
+:data-x: r-300
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../git/RMLL/videos/openigtlink.mp4" >
+          Your browser does not support the video tag.
+       </video>
+       
+----
+
+:data-y: r1500
 
 Augmented reality repository
 =============================
 
 - Video player (**QtMultimedia**): file, camera or network
 - Tag-based video tracking (**Aruco**, **OpenCV**)
-- *ARCalibration* : Camera calibration (VIDEO)
-- *VideoTracking* : Video tracking (VIDEO)
+- *ARCalibration* : Camera calibration (mono, stereo)
+
+----
+
+:data-x: r-320
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../git/RMLL/videos/tutos.mp4" >
+          Your browser does not support the video tag.
+       </video>
+       
+- *VideoTracking* : Video tracking
+
+----
+
+:data-x: r-350
+
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../git/RMLL/videos/vrrender.mp4" >
+          Your browser does not support the video tag.
+       </video>
+
 
 .. note::
     - VideoTracking requires a calibration
 
 ----
+
+:data-y: r1500
 
 Repositories
 ================
