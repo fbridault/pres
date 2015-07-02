@@ -89,7 +89,7 @@ IRCAD context
 .. raw:: html
 
        <div class="legend">Viewer</div>
-       <video width="800" height="600">
+       <video width="800" height="600" controls>
           <source src="../git/RMLL/videos/VRMedNegato2D3D.mp4" >
           Your browser does not support the video tag.
        </video>
@@ -102,7 +102,7 @@ IRCAD context
 .. raw:: html
 
        <div class="legend">Segmentation/3D models</div>
-       <video width="800" height="600">
+       <video width="800" height="600" controls>
           <source src="../git/RMLL/videos/TeaserVisiblePatient2012.mp4" >
           Your browser does not support the video tag.
        </video>
@@ -116,7 +116,7 @@ IRCAD context
 .. raw:: html
 
        <div class="legend">Planning</div>
-       <video width="800" height="600">
+       <video width="800" height="600" controls>
           <source src="../git/RMLL/videos/TeaserVisiblePatient2012.mp4" >
           Your browser does not support the video tag.
        </video>
@@ -129,8 +129,8 @@ IRCAD context
 .. raw:: html
 
        <div class="legend">Simulation</div>
-       <video width="800" height="600">
-          <source src="../git/RMLL/videos/digitalTrainersSimu1.mov" >
+       <video width="800" height="600" controls>
+          <source src="../git/RMLL/videos/digitalTrainersSimu1.mp4" >
           Your browser does not support the video tag.
        </video>
        
@@ -143,7 +143,7 @@ IRCAD context
 .. raw:: html
 
        <div class="legend">Augmented reality</div>
-       <video width="800" height="600">
+       <video width="800" height="600" controls>
           <source src="../git/RMLL/videos/rdARinteractive1.mov" >
           Your browser does not support the video tag.
        </video>
@@ -156,6 +156,7 @@ IRCAD context
 
 ----
 
+:class: text-small
 :data-y: r1500
 
 IRCAD R&D team
@@ -197,7 +198,7 @@ FW4SPL characteristics
 - Developed in C++
 - Applications built in XML
 - Multi platforms (Windows, Linux, OSX, Android)
-- Depends on many open source libraries: boost, Qt, VTK, ITK, gdcm, dcmtk, libxml2,...
+- Dependencies on many open source libraries
 - Licensed under LGPL
 
 ----
@@ -210,14 +211,12 @@ FW4SPL history
 - 09/2009 : fw4spl became open-source (LGPL)
 - 2010 : PoC **Sofa** (Altran-Est), VRRender WLE 0.8.1 (free)
 - 2011 : PoC **Kinect** (Altran-Est), VRRender 0.9 (open)
-- 2012 : Introduction of multithreading
-- 2013 : Creation of a board (*IRCAD*, *IHU*, *Visible Patient*) to manage the evolution of fw4spl
+- 2013 : Creation of the FW4SPL board
 
 ----
 
-:data-x: r-700
+:data-x: r-560
 
-- 2013 : Creation of fw4spl external repository (for branch 0.9.1 and after)
 - 2014 : Switch to **CMake** for building
 - 2014 : Creation of **GitHub** and **Bitbucket** repositories
 - 2014 : Partial **Android** support
@@ -238,20 +237,6 @@ FW4SPL board
 - IRCAD `<http://www.ircad.fr>`_
 - IHU  `<http://www.ihu-strasbourg.eu>`_
 - Visible Patient `<http://www.visiblepatient.com>`_
-
-----
-
-:data-y: r1500
-
-FW4SPL statistics
-=============================
-
-UPDATE THAT
-
-- Applications: 35 (PoC and Tutorials)
-- Bundles: 52 (57 on private repository)
-- Service number: 230 (380)
-- Code line numbers: 220 000
 
 ----
 
@@ -661,9 +646,17 @@ VtkQtVisuSrv
     
 - setConfiguration(cfg) : set title and window size
 - configure() : verify if the screen support this size
-- start() : initialize Qt frame and vtk pipeline and show the frame (image is not shown if image buffer is null )
-- update() : check if the buffer has be changed, if true, refresh the vtk pipeline to show negato
+- start() : initialize Qt frame and vtk pipeline and show the frame
+- update() : check the buffer, if it has changed, refresh the vtk pipeline
 - stop() : destroy vtk pipeline and uninitialize Qt frame.
+
+.. note::
+    
+    - setConfiguration(cfg) : set title and window size
+    - configure() : verify if the screen support this size
+    - start() : initialize Qt frame and vtk pipeline and show the frame (image is not shown if image buffer is null )
+    - update() : check if the buffer has be changed, if true, refresh the vtk pipeline to show negato
+    - stop() : destroy vtk pipeline and uninitialize Qt frame.
 
 ----
 
@@ -850,6 +843,7 @@ XML based launcher
         xcm->createObjectsAndServices();
         xcm->startServices();
         xcm->updateServices();
+        xcm->stopServices();
     }
     
 ----
@@ -897,7 +891,7 @@ Problem
 Now the reader must be called by UI
 ****************************************************
 
-- We can no longer call **update()** from the xml
+- We can no longer call **update()** of the visualization from the xml
 - *How to automate the call ?*
 
 ----
@@ -923,7 +917,6 @@ Outline
     - Component based approach - 5min
     - Community - 10min
     - Conclusion - 5min
-    
     
 ----
 
@@ -1341,7 +1334,7 @@ Augmented reality repository
 .. raw:: html
 
        <video width="800" height="600" controls>
-          <source src="../git/RMLL/videos/tutos.mp4" >
+          <source src="../git/RMLL/videos/arcalibration.mp4" >
           Your browser does not support the video tag.
        </video>
        
@@ -1355,7 +1348,7 @@ Augmented reality repository
 .. raw:: html
 
        <video width="800" height="600" controls>
-          <source src="../git/RMLL/videos/vrrender.mp4" >
+          <source src="../git/RMLL/videos/videotracking.mp4" >
           Your browser does not support the video tag.
        </video>
 
