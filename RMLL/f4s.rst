@@ -1,4 +1,4 @@
-:title: Basic example
+:title: FW4SPL, a framework for applications based on medical imaging
 :data-transition-duration: 1250
 :author: Flavien Bridault
 :description: Basic hovercraft example
@@ -33,9 +33,40 @@ FW4SPL, a framework for applications based on medical imaging.
 
 ----
 
-
 :data-y: r1500
 :data-rotate-z: 90
+:class: ircad
+           
+IRCAD
+=================
+
+.. image:: images/ircad.jpg 
+           :width: 80%
+           
+- Institut de Recherche contre les Cancers de l'Appareil Digestif
+- Created by Jacques Marescaux in 1994
+- Training center/Research
+
+      
+----
+           
+IHU
+=================
+
+     
+.. image:: images/ihu.jpg 
+           :width: 80%
+           
+Mini-invasive surgery guided by image
+
+.. note::
+    - Institute located next to IRCAD...
+    
+    
+----
+
+
+:data-y: r1500
 
 Presentation purpose : 
 ==================================================================
@@ -57,7 +88,8 @@ Outline
 - Object/Service approach
 - Communication
 - Component based approach
-- Community
+- Discussion
+- Getting started
 
 .. note::
 
@@ -65,13 +97,13 @@ Outline
     - Object/Service approach - 10 min
     - Communication -5min 
     - Component based approach - 5min
-    - Community - 10min
+    - Getting started - 10min
     - Conclusion - 5min
+
 
 ----
 
 :id: ircad-context
-:data-y: r2000
 
 IRCAD context
 =================
@@ -79,6 +111,11 @@ IRCAD context
 .. image:: images/patient.png 
            :width: 30%
 
+.. note::
+    - At IRCAD, we make prototypes/PoC of software based on medical imaging
+    - Our data is the patient
+    - Historically we have worked on different steps of the image process
+    
 ----
 
 :data-x: r-300
@@ -88,7 +125,7 @@ IRCAD context
 
 .. raw:: html
 
-       <div class="legend">Viewer</div>
+       <div class="legend">Viewer/Segmentation</div>
        <video width="800" height="600" controls>
           <source src="../git/RMLL/videos/VRMedNegato2D3D.mp4" >
           Your browser does not support the video tag.
@@ -96,22 +133,9 @@ IRCAD context
 
 ----
 
-:data-x: r-270
+:data-x: r-300
+:data-y: r100
       
-
-.. raw:: html
-
-       <div class="legend">Segmentation/3D models</div>
-       <video width="800" height="600" controls>
-          <source src="../git/RMLL/videos/TeaserVisiblePatient2012.mp4" >
-          Your browser does not support the video tag.
-       </video>
-
-----
-
-:data-x: r-270
-:data-y: r300
-
 
 .. raw:: html
 
@@ -123,8 +147,7 @@ IRCAD context
 
 ----
 
-:data-x: r270
-:data-y: r300
+:data-y: r400
 
 .. raw:: html
 
@@ -137,7 +160,8 @@ IRCAD context
        
 ----
 
-:data-x: r270
+:data-y: r100
+:data-x: r300
 
 
 .. raw:: html
@@ -172,6 +196,9 @@ IRCAD R&D team
 - Trainees (6)
 - Internships (4) 
    
+.. note::
+    The team who work on these softwares contains...
+
 ----
 
 IRCAD R&D needs
@@ -194,13 +221,18 @@ FW4SPL characteristics
 ===========================
 
 - Object/services design
-- Component based
+- Component based (inspired by OSGi_)
 - Developed in C++
 - Applications built in XML
 - Multi platforms (Windows, Linux, OSX, Android)
 - Dependencies on many open source libraries
 - Licensed under LGPL
 
+.. _OSGi: http://www.osgi.org
+
+.. note::
+    XML, not common to build applications
+    
 ----
 
 FW4SPL history
@@ -209,13 +241,13 @@ FW4SPL history
 - 2004-2007 : fw4spl project
 - 2007-2009 : **VRRender** 0.7 (free)
 - 09/2009 : fw4spl became open-source (LGPL)
-- 2010 : PoC **Sofa** (Altran-Est), VRRender WLE 0.8.1 (free)
+- 2010 : PoC **Sofa** (Altran-Est)
 - 2011 : PoC **Kinect** (Altran-Est), VRRender 0.9 (open)
 - 2013 : Creation of the FW4SPL board
 
 ----
 
-:data-x: r-560
+:data-x: r-520
 
 - 2014 : Switch to **CMake** for building
 - 2014 : Creation of **GitHub** and **Bitbucket** repositories
@@ -251,7 +283,8 @@ Outline
 - *Object/Service approach*
 - Component based approach
 - Communication
-- Community
+- Discussion
+- Getting started
 
 .. note::
 
@@ -259,7 +292,7 @@ Outline
     - Object/Service approach - 10 min
     - Component based approach - 5min
     - Communication - 10min 
-    - Community - 5min
+    - Getting started - 5min
     - Conclusion - 5min
 
 ----
@@ -451,14 +484,16 @@ Limits of this approach
 
 Solution
 ***********
-- Split data and functions
-- Put them in different files and libraries
+1. Split data and functions
+2. Put them in different files
+3. Put them in different libraries
 
 .. note::
 
     - Too many functions, if team continue to add functions or if you split your main functions to have a better visibility
     - Many dependencies required (itk,vtk,qt,dcmtk,...) even if you need just cropping an image
     - Everyone work on the same file
+    - Put them in different files and libraries
 
 ----
 
@@ -580,6 +615,8 @@ Solution
 :data-y: r-200
 
 *Common interface for all services*
+
+*State pattern*
 
 .. image:: images/IService01.png
            :width: 60%
@@ -741,7 +778,7 @@ Use the factory pattern...
         reader->setObject( img );
         reader->setConfiguration( imgPath );
         reader->configure(); // check if the path is correct
-        reader->start(); // a service must be start before updating it
+        reader->start(); // a service must be started before updating it
         reader->update(); // read image
 
         // ...
@@ -907,6 +944,7 @@ Outline
 - Object/Service approach
 - *Communication*
 - Component based approach
+- Discussion
 - Getting started
 
 .. note::
@@ -915,7 +953,7 @@ Outline
     - Object/Service approach - 10 min
     - Communication -5min 
     - Component based approach - 5min
-    - Community - 10min
+    - Getting started - 10min
     - Conclusion - 5min
     
 ----
@@ -1024,8 +1062,8 @@ Outline
 - Object/Service approach
 - Communication
 - *Component based approach*
-- Community
-- Conclusion
+- Discussion
+- Getting started
 
 .. note::
 
@@ -1033,7 +1071,7 @@ Outline
     - Object/Service approach - 10 min
     - Communication -5min 
     - Component based approach - 5min
-    - Community - 10min
+    - Getting started - 10min
     - Conclusion - 5min
     
 ----
@@ -1043,30 +1081,31 @@ Outline
 Component based approach
 ========================
 
+Examples
+***********
+
+- Eclipse,...
+
 Benefits
 ***********
 
-- Reuse code in another application, without recompiling your program
-- Easier support (ex: correction of bug) of your program
+- Code reuse without recompiling
+- Easier support
 - Easier collaborative work
-- To split code and to improve external dependencies management (vtk, itk, qt, wx, ...)
+- To split code and to improve external dependencies management (VTK, ITK, Qt,...)
 
-----
 
-Examples
-========================
-
-- Eclipse
-- Applications with plugins (Firefox)
-- More !
-
+.. note::
+    - Reuse code in another application, without recompiling your program
+    - Easier support EXAMPLE correction of bug
+    
 ----
 
 Component in FW4SPL
 ========================
 
-- Group services, by thema and/or by dependency
 - Also called *Bundle*
+- Group services, by thema and/or by dependency
 - Examples: 
     - **ioITK**: reading/writing image or mesh data with ITK formats
     - **uiImageQt**: user interface controls using Qt to manipulate images
@@ -1076,9 +1115,13 @@ Component in FW4SPL
 Content of a Bundle
 ========================
 
-- Xml description file ( plugin.xml ) to describe the content of the dynamic library
+- Xml description file : **plugin.xml**
 - Dynamic libraries ( .so, .dll, .dylib)
 - Other shared resources ( icons, sounds, ... )
+
+.. note::
+    - When a Bundle is compiled
+    - Xml description file ( plugin.xml ) to describe the content of the dynamic library
 
 ----
 
@@ -1134,6 +1177,9 @@ Example : I/O Bundles
           Your browser does not support the video tag.
        </video>
 
+.. note::
+    - Switch GUI !!!
+    
 ----
 
 :class: square-background
@@ -1156,7 +1202,7 @@ Outline
     - Object/Service approach - 10 min
     - Communication -5min 
     - Component based approach - 5min
-    - Community - 10min
+    - Getting started - 10min
     - Conclusion - 5min
     
 ----
@@ -1166,7 +1212,7 @@ Outline
 Discussion
 ================================
 
-*We have introduced services*
+*Services and components*
 
 **Cons**
 
@@ -1180,9 +1226,14 @@ Discussion
 
 ----
 
-*How to share common code ?*
+Application design
+=======================
 
-- We still have regular shared libraries
+- Write a new xml
+- Only use the subset of bundles you need
+- Write new services
+- Create new bundles/libraries
+- Share common code in regular shared libraries (*.so,*.dll)
 
 ----
 
@@ -1360,13 +1411,34 @@ Augmented reality repository
 
 :data-y: r1500
 
-Repositories
+Stay tuned !!!
 ================
 
-In September 2015
+Coming in September 2015
 **************************
 
 - Ogre3D integration : *fw4spl-Ogre3d*
+- Shader model 4 support
+- Use of Ogre compositors for advanced visual effects
+    - Advanced order independent transparency
+
+----
+
+:data-x: r-350
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../git/RMLL/videos/ogrevtk.mp4" >
+          Your browser does not support the video tag.
+       </video>
+       
+----
+
+:data-y: r1500
+
+Thank you !
+**************
 
 
 
