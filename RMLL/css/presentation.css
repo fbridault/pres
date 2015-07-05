@@ -37,8 +37,22 @@ display: block;
 margin: 0 auto;
 }
 
-img {
+table {
+border: medium solid #000000;
+width: 50%;
+}
+th {
+border: thin solid #45949d;
+padding: 5px;
+padding-right: 50px;
+padding-left: 50px;
+font-size: 0.8em;
+}
+td {
+border: thin solid #45949d;
+padding: 5px;
 text-align: center;
+font-size: 0.7em;
 }
 
 #circle-no-background {

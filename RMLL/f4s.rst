@@ -41,7 +41,7 @@ IRCAD
 =================
 
 .. image:: images/ircad.jpg 
-           :width: 80%
+           :width: 70%
            
 - Institut de Recherche contre les Cancers de l'Appareil Digestif
 - Created by Jacques Marescaux in 1994
@@ -68,13 +68,21 @@ Mini-invasive surgery guided by image
 
 :data-y: r1500
 
-Presentation purpose : 
+Presentation purpose
 ==================================================================
 
 - Why IRCAD R&D team has developed FW4SPL ?
 - Explain the design
 - Show the main features
 - Help to start developing
+
+----
+
+FW4SPL meaning
+===============
+
+- FrameWork for Software Production Line
+- Nickname: *F4S* -> *Forces* [fɔʁsjz]
 
 ----
 
@@ -245,15 +253,17 @@ FW4SPL history
 - 2011 : PoC **Kinect** (Altran-Est), VRRender 0.9 (open)
 - 2013 : Creation of the FW4SPL board
 
+.. note::
+	- Sofa: biomechanical engine
+
 ----
 
-:data-x: r-520
+:data-x: r-450
 
-- 2014 : Switch to **CMake** for building
-- 2014 : Creation of **GitHub** and **Bitbucket** repositories
-- 2014 : Partial **Android** support
-- 2015 : Documentation generated on **ReadTheDocs.org**
-- 2015 : Creation of a blog for developers
+- 2014 : Switched to **CMake** for building
+- 2014 : Migrated to **GitHub** and **Bitbucket** repositories
+- 2014 : Started **Android** support
+- 2015 : Created a blog for developers
 
 .. note::
 
@@ -261,19 +271,8 @@ FW4SPL history
 
 ----
 
-:data-y: r1500
-
-FW4SPL board
-=================
-
-- IRCAD `<http://www.ircad.fr>`_
-- IHU  `<http://www.ihu-strasbourg.eu>`_
-- Visible Patient `<http://www.visiblepatient.com>`_
-
-----
-
 :class: square-background
-:data-x: r1500
+:data-x: r2000
 :data-rotate-z: r90
 
 Outline
@@ -310,126 +309,28 @@ Classic approach
 ====================
 
 - an object (i.e. an image) is represented by a class.
+
+----
+
+:class: centered
+:data-y: r250
+:data-scale: 0.5
+
+.. image:: images/Image.png
+           :width: 80%
+
+----
+
+:data-scale: 1
+:data-y: r250
+
 - this class contains all functionalities working on the object (reading, writing, visualization,image analysis, ...)
 
 ----
 
 :class: centered
-:data-y: r500
-:data-scale: 0.45
-
-
-.. image:: images/Image.png
-           :width: 80%
-
-
-----
-
-:class: centered
-:data-y: r300
-
-
-.. image:: images/Image01.png
-           :width: 80%
-       
-----
-
-:data-y: r200
-:data-scale: 1
-
-|
-|
-|
-
-.. code:: c++
-
-
-    void readImageFromPacsWithDcmtk( ... )
-    {
-        // Load an image using dcmtk
-        Dcmtk::Image img;
-        
-        // ...
-
-        // Convert dcmtk image data in our format
-        m_buffer = dcmtkHelper::getBuffer(img);
-        m_size = dcmtkHelper::getSize(img);
-    }
-    
-----
-
-:class: centered
-:data-scale: 0.45
-:data-x: r1100
-:data-y: r-200
-
-.. image:: images/Image02.png
-           :width: 80%
-
-----
-
-:data-y: r220
-:data-scale: 1
-
-|
-|
-|
-
-.. code:: c++
-
-    void cropImageWithItk( ... )
-    {
-        // Convert our data to an itk image
-        Itk::Image imgIn = itkHelper::getImage(m_buffer, m_size);
-
-        // Crop an img using library itk 
-        // ...
-
-        // Convert itk image data in our format
-        m_buffer = itkHelper::getBuffer(imgOut);
-        m_size = itkHelper::getSize(imgOut );
-    }
-
-----
-
-:class: centered
-:data-scale: 0.45
-:data-x: r1300
-:data-y: r-200
-
-.. image:: images/Image03.png
-           :width: 80%
-
-----
-
-:data-y: r220
-:data-scale: 1
-
-|
-|
-|
-
-.. code:: c++
-
-    void windowingImageWithOpenCV( ... )
-    {
-        // Convert our data to a OpenCV image
-        OpenCV::Image imgIn = openCVHelper::getImage(m_buffer, m_size);
-
-        // Apply windowing using OpenCV
-        // ...
-
-        // Convert openCV image data in our format
-        m_buffer = openCVHelper::getBuffer(imgOut);
-        m_size = openCVHelper::getSize(imgOut);
-    }
-
-----
-
-:class: centered
-:data-scale: 0.45
-:data-x: r1400
-:data-y: r-200
+:data-y: r250
+:data-scale: 0.5
 
 .. image:: images/Image04.png
            :width: 80%
@@ -437,26 +338,10 @@ Classic approach
 ----
 
 :data-scale: 1
-:data-y: r200
+:data-x: r-200
+:data-y: r400
 
-|
-|
-|
-
-.. code:: c++
-
-    void visuWithVtkAndQt( ... )
-    {
-        // Convert our data to a vtk image
-        Vtk::Image img = vtkHelper::getVtkImage(m_buffer, m_size);
-
-        // Open a Qt frame and show a negato using vtk and Qt
-    }
-
-----
-
-:data-scale: 0.7
-:data-y: r-350
+A GARDER ?
 
 .. code:: c++
 
@@ -466,17 +351,13 @@ Classic approach
     img->windowingImageWithOpenCV( windowParam );
     img->visuWithVtkAndQt( visuParam );
 
-|
-|
-|
-
-
 ----
 
+:data-scale: 1
 :data-x: r1500
 
 Limits of this approach
-============================================================
+============================
 
 - Too many methods in the class, hard to maintain 
 - Many dependencies required even if you only need a single method.
@@ -490,149 +371,33 @@ Solution
 
 .. note::
 
-    - Too many functions, if team continue to add functions or if you split your main functions to have a better visibility
+    - Too many functions, if team continue to add functions
     - Many dependencies required (itk,vtk,qt,dcmtk,...) even if you need just cropping an image
     - Everyone work on the same file
     - Put them in different files and libraries
 
 ----
 
-:class: centered
-:data-scale: 1
-:data-x: r1000
-:data-y: r-200
+Service
+============================
 
-*Object contains data only*
-
-*Helpers are static methods*
-
-.. image:: images/helper01.png
-           :width: 120%
-
-----
-
-:data-y: r200
-:data-scale: 1
-
-|
-|
-|
-
-.. code:: c++
-
-    Image* img = new Image();
-    DcmtkHelper::readFromPacs(img, patientInfo, pacsInfo);
-    ItkHelper::crop(img, cropParam);
-    OpenCVHelper::window(img , windowParam);
-    VtkQtHelper::visu(img, visuParam);
+- Only one functionnality (Read, Crop,...)
+- Class of services (IReader, IOperator, IVisu)
+- Basically an helper/observer, but can be instantiated
+- State pattern
 
 ----
 
 :class: centered
-:data-scale: 1
-:data-x: r1500
-:data-y: r-200
-
-*Helpers can be instantiated*
-
-.. image:: images/helper02.png
-           :width: 120%
-
-----
-
-:data-y: r300
-:data-scale: 1
-
-|
-|
-|
-
-.. code:: c++
-
-    Image* img = new Image();
-    VtkQtHelper* visuHelper = new VtkQtHelper();
-    visuHelper->initVisu(img, visuParam);
-    
-    DcmtkHelper::readFromPacs(img, patientInfo, pacsInfo);
-    visuHelper->refresh();
-    
-    ItkHelper::crop(img, cropParam);
-    visuHelper->refresh();
-    
-    OpenCVHelper::window(img, windowParam);
-    visuHelper->refresh();
-    
-    
-    
-----
-
-:class: centered
+:data-y: r450
 :data-scale: 0.8
-:data-x: r1500
-:data-y: r-200
 
-*Group helpers by type*
+.. image:: images/state.png
 
-.. image:: images/helper03.png
-           :width: 130%
-
-----
-
-:data-y: r530
-:data-scale: 1
-
-|
-|
-|
-
-.. code:: c++
-
-    Image* img = new Image();
-    
-    IVisu * visu = new VtkQtVisu();
-    visu->setVisuParam(img, visuParam );
-    visu->init();
-    
-    IReader* reader = new DcmtkReader();
-    reader->setReaderParam(img, patientInfo, pacsInfo );
-    reader->read();
-    
-    IOperator* op1 = new ItkCropOperator();
-    op1->setOperatorParam(img, cropParam);
-    op1->compute();
-    visu->refresh();
-    
-    IOperator* op2 = new OpenCVWindowOperator();
-    op2->setOperatorParam(img, windowParam);
-    op2->compute();
-    visu->refresh();
-    
-----
-
-:class: centered
-:data-scale: 0.8
-:data-x: r1500
-:data-y: r-200
-
-*Common interface for all services*
-
-*State pattern*
-
-.. image:: images/IService01.png
-           :width: 60%
-
-----
-
-:class: li1
-:data-y: r380
-:data-scale: 1
-
-- setObject(obj) : set the object associated
-- setConfiguration(cfg) : set the service parameters
-- configure() : verify parameters and configure service
-- start() : init/launch the service
-- update() : compute data, refresh, etc
-- stop() : close the service
+	
+.. note::
+	- transitions, on ne peut pas passer de configure à stop
+	- We need to store data into it
 
 ----
 
@@ -641,7 +406,7 @@ Solution
 :data-x: r1500
 :data-y: r-200
 
-*Group helpers by type*
+*Service approach example*
 
 .. image:: images/IService02.png
            :width: 120%
@@ -733,158 +498,25 @@ Program
     
 ----
 
-:class: text-small
 :data-y: r600
 :data-scale: 1
-
-Use the factory pattern...
-================================
-
-.. code:: c++
-
-    IService* Factory::createServiceInstance(const char* implName)
-    {
-        if ( implName == "DcmtkReaderSrv" )
-        {
-            return new DcmtkReaderSrv();
-        }
-        else if ( implName == "ItkReaderSrv" )
-        {
-            return new ItkReaderSrv();
-        }
-        else if
-        {
-            // ...
-        }
-    }
-    
-----
-
-:class: text-small
-:data-y: r500
-
-.. code:: c++
-
-    void main(int argc, char *argv[])
-    {
-        string srvReaderImpl ( argv[1] );
-        string imgPath ( argv[2] );
-        
-        Object* img = new Image();
-
-        // Call to the Factory
-        IService* reader = Factory::createServiceInstance( srvReaderImpl );
-        
-        reader->setObject( img );
-        reader->setConfiguration( imgPath );
-        reader->configure(); // check if the path is correct
-        reader->start(); // a service must be started before updating it
-        reader->update(); // read image
-
-        // ...
-        reader->stop();
-    }
-    
-----
-
-:class: text-small
-:data-x: r1200
-
-Factory for the object creation
-================================
-
-.. code:: c++
-
-    void main(int argc, char *argv[])
-    {
-        string objImpl ( argv[1] );
-        string srvImpl ( argv[2] );
-        string config  ( argv[3] );
-        
-        Object * obj = Factory::createObjectInstance( objImpl );
-        IService * srv = Factory::createServiceInstance( srvImpl );
-        srv->setObject( obj );
-        srv->setConfiguration( config );
-        srv->configure();
-        srv->start();
-        srv->update();
-        srv->stop();
-
-        // ...
-    }
-    
-----
-
-:class: text-small
-:data-x: r1200
-
-Example with reader and visualization
-======================================
-
-.. code:: c++
-
-    void main(int argc, char *argv[])
-    {
-        string objImpl ( argv[1] );
-
-        string srvImpl1 ( argv[2] ); // Reader
-        string srvCfg1  ( argv[3] );
-
-        string srvImpl2 ( argv[4] ); // Visu
-        string srvCfg2  ( argv[5] );
-        
-        Object * obj = Factory::createObjectInstance( objImpl );
-        
-        IService * srv1 = Factory::createServiceInstance( srvImpl1 );
-        srv1->setConfiguration( srvCfg1 );
-        srv1->configure();
-        srv1->start();  // Start reader ( do nothing )
-
-        IService * srv2 = Factory::createServiceInstance( srvImpl2 );
-        srv2->setConfiguration( srvCfg2 );
-        srv2->configure();
-        srv2->start(); // Start Visu
-
-        srv1->update(); // Read image on filesystem
-        srv2->update(); // Refresh vusalisation with the new image buffer
-        // ...
-        srv1->stop();
-        srv2->stop();
-    }
-    
-    
-----
 
 Last step
 ======================================
 
-*Declaring objects and services from the command line is not really convenient...*
+Application description in XML
+*******************************
 
 - Grab all objects and services from a file
-- XML syntax
+	- Launcher
+- Services and objects types are:
+	- Registered dynamically
+	- Created through a factory
 
 
 ----
 
-XML based launcher
-======================================
-
-.. code:: c++
-
-    void main(int argc, char *argv[])
-    {
-        string xmlAppConfigPath = argv[1];
-
-        XmlConfigManager xcm ( xmlAppConfigPath );
-        
-        xcm->createObjectsAndServices();
-        xcm->startServices();
-        xcm->updateServices();
-        xcm->stopServices();
-    }
-    
-----
-
+:data-x: r1500
 :class: text-small
 
 XML configuration file
@@ -963,12 +595,11 @@ Outline
 Communication
 ===================
 
-- *Signals/Slots*
+- *Signals/Slots* (inspired by Qt)
     - Data -> Service
     - Service <-> Service
-- Introduced in 0.9.2
 - Replace the old messaging system
-- Will be the only mechanism after 0.10.2
+- Only mechanism in latest version
 
 ----
 
@@ -1038,14 +669,14 @@ Features
             <filename path="./TutoData/patient1.vtk"/>
         </service>
         
-        <start uid="myFrame" />
-        <start uid="myVisu"/>
-        <start uid="myReader"/>
-
         <connect>
             <slot>imageUID/modified</slot>
             <signal>myVisu/update</signal>
         </connect>
+
+        <start uid="myFrame" />
+        <start uid="myVisu"/>
+        <start uid="myReader"/>
             
     </object>
     
@@ -1105,7 +736,8 @@ Component in FW4SPL
 ========================
 
 - Also called *Bundle*
-- Group services, by thema and/or by dependency
+- Group services, by theme and/or by dependency
+- Loaded dynamically
 - Examples: 
     - **ioITK**: reading/writing image or mesh data with ITK formats
     - **uiImageQt**: user interface controls using Qt to manipulate images
@@ -1163,9 +795,59 @@ Extract of plugin.xml (ioITK)
 
 .. note::
     - This shows how to register services in the factory
+	- This helps to load bundles dynamically
     - Don't talk about extension points
     
 ----
+
+Bundles in application
+========================
+
+*profile.xml*
+
+- Input file for the launcher
+- Describe which bundles to use
+
+----
+
+:data-y: r-320
+
+:class: text-small
+
+.. code::
+
+	<profile name="TestApp" version="0.1.0">
+
+		<activate id="dataReg" version="0-1" />
+
+		<activate id="gui" version="0-1" />
+		<activate id="guiQt" version="0-1" />
+
+		<activate id="io" version="0-1" />
+		<activate id="ioVTK" version="0-1" />
+
+		<activate id="media" version="0-1" />
+
+		<activate id="visu" version="0-1" />
+		<activate id="visuVTK" version="0-1" />
+		<activate id="visuVTKQt" version="0-1" />
+
+		<activate id="TestApp" />
+		<activate id="appXml" version="0-1" >
+		    <param id="config" value="TestAppBase" />
+		    <param id="parameters" value="TestAppBase" />
+		</activate>
+
+		<start id="visuVTK" />
+		<start id="visuVTKQt" />
+		<start id="guiQt" />
+		<start id="appXml" />
+
+	</profile>
+
+----
+
+:data-x: r-1500
 
 Example : I/O Bundles
 ==============================
@@ -1217,7 +899,7 @@ Discussion
 **Cons**
 
 - Think design differently
-- Need to write a new class for each new function
+- Need to write a new class for each new functionality
 
 **Pros**
 
@@ -1275,13 +957,11 @@ Where can I download FW4SPL ?
 Which version to use ?
 =========================
 
-Current stable version
-**************************
-- 0.10.1
+Current stable version : 0.10.1
+***********************************
 
-Current development version
-******************************
-- 0.10.2
+Current development version : 0.10.2
+**************************************
 - Strongly advised for new software (communication API is simpler)
 - For now need patches repositories, only available on bitbucket
 
@@ -1294,24 +974,23 @@ Current development version
 Repositories
 ================
 
-Dependencies
-*************
+========= ==========  ===============
+Type      Sources     Dependencies
+========= ==========  ===============
+Main      fw4spl      fw4spl-deps
+Extended  fw4spl-ext  fw4spl-deps-ext
+AR        fw4spl-ar   fw4spl-deps-ar
+========= ==========  ===============
 
-- Main : *fw4spl-deps*
-- Extended : *fw4spl-deps-ext*
-- Augmented reality : *fw4spl-deps-ar*
 
-Sources
-*************
-
-- Main : *fw4spl*
-- Extended : *fw4spl-ext*
-- Augmented : *fw4spl-ar*
-
+.. note::
+	- dependencies = external libraries (examples)
+	- extended : work in progress
+ 
 ----
 
-Main repository
-================
+Main repository *(fw4spl)*
+===========================
 
 - Basic data (Float, Integer, String, Image, Mesh,... )
 - GUI (Qt)
