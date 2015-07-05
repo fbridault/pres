@@ -338,22 +338,6 @@ Classic approach
 ----
 
 :data-scale: 1
-:data-x: r-200
-:data-y: r400
-
-A GARDER ?
-
-.. code:: c++
-
-    Image* img = new Image();
-    img->readFromPacsWithDcmtk( patientInfo, pacsInfo );
-    img->cropWithItk( cropParam );
-    img->windowingImageWithOpenCV( windowParam );
-    img->visuWithVtkAndQt( visuParam );
-
-----
-
-:data-scale: 1
 :data-x: r1500
 
 Limits of this approach
@@ -385,6 +369,10 @@ Service
 - Class of services (IReader, IOperator, IVisu)
 - Basically an helper/observer, but can be instantiated
 - State pattern
+
+.. note::
+	- constat pour chaque fonctionnalité il faut toujours configurer, initialiser
+	- update on peut répéter et arrêter
 
 ----
 
@@ -464,6 +452,7 @@ VtkQtVisuSrv
 
 :data-x: r-260
 :data-y: r160
+:class: text-small
 
 Program
 ===================
@@ -509,9 +498,8 @@ Application description in XML
 
 - Grab all objects and services from a file
 	- Launcher
-- Services and objects types are:
-	- Registered dynamically
-	- Created through a factory
+- Services and objects types are registered dynamically
+- Instances are created by a factory
 
 
 ----
@@ -1097,9 +1085,8 @@ Coming in September 2015
 **************************
 
 - Ogre3D integration : *fw4spl-Ogre3d*
-- Shader model 4 support
-- Use of Ogre compositors for advanced visual effects
-    - Advanced order independent transparency
+- Advanced rendering techniques
+- Better performances
 
 ----
 
@@ -1114,7 +1101,7 @@ Coming in September 2015
        
 ----
 
-:data-y: r1500
+:data-y: r3500
 
 Thank you !
 **************
