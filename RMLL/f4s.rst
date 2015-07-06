@@ -468,11 +468,13 @@ Program
     IService* visu = new VtkQtVisuSrv();
     visu->setObject( img );
     visu->setConfiguration( visuParam );
+    visu->configure();
     visu->start();
     
     IService* reader = new DcmtkReaderSrv ();
     reader->setObject( img );
     reader->setConfiguration( readerParam );
+    reader->configure();
     reader->start();
     reader->update();
     visu->update();
@@ -480,6 +482,7 @@ Program
     IService* op1 = new ItkCropOperatorSrv ();
     op1->setObject( img );
     op1->setConfiguration ( cropParam );
+    op1->configure();
     op1->start();
     op1->update();
     visu->update();
@@ -663,8 +666,8 @@ Features
         </service>
         
         <connect>
-            <slot>imageUID/modified</slot>
-            <signal>myVisu/update</signal>
+            <signal>imageUID/modified</signal>
+            <slot>myVisu/update</slot>
         </connect>
 
         <start uid="myFrame" />
