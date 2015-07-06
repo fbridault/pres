@@ -1031,8 +1031,8 @@ Main repository *(fw4spl)*
 
 :data-y: r1500
 
-Extended repository
-=====================
+Extended repository *(fw4spl-ext)*
+===================================
 
 - Timeline data
 - DICOM (dcmtk)
@@ -1053,8 +1053,8 @@ Extended repository
 
 :data-y: r1500
 
-Augmented reality repository
-=============================
+Augmented reality repository *(fw4spl-ar)*
+===========================================
 
 - Video player (**QtMultimedia**): file, camera or network
 - Tag-based video tracking (**Aruco**, **OpenCV**)
@@ -1091,11 +1091,15 @@ Augmented reality repository
 Debian Integration
 ===================
 
-- Jessie
+- Available on testing_
 - Previous stable version 0.9.2
-- No external dependency management ! :)
+- Ready to use !
+
+.. _testing: https://packages.debian.org/testing/science/fw4spl
 
 ----
+
+:data-y: r3500
 
 Stay tuned !!!
 ================
@@ -1121,14 +1125,15 @@ Coming in September 2015
 ----
 
 :class: centered
-:data-y: r3500
+:data-y: r1500
 
 Thank you !
 =============
 
+fw4spl@gmail.com
+
 fbridault@ircad.fr
 
 johan.moreau@ircad.fr
-
 
 
