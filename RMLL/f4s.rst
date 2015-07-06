@@ -1,7 +1,7 @@
-:title: FW4SPL, a framework for applications based on medical imaging
+:title: FW4SPL
 :data-transition-duration: 1250
 :author: Flavien Bridault
-:description: Basic hovercraft example
+:description: FW4SPL, a framework for applications based on medical imaging
 :keywords: presentation
 :css: css/presentation.css
 :skip-help: true
@@ -35,10 +35,10 @@ FW4SPL, a framework for applications based on medical imaging.
 
 :data-y: r1500
 :data-rotate-z: 90
-:class: ircad
+:class: text-small
            
-IRCAD
-=================
+IRCAD (Strasbourg, France)
+==========================
 
 .. image:: images/ircad.jpg 
            :width: 70%
@@ -47,20 +47,29 @@ IRCAD
 - Created by Jacques Marescaux in 1994
 - Training center/Research
 
+.. note::
+	- IRCAD is a research institute against digestive cancer. It was created...
+	- It is known worldwide especially because of its training cancer, where 4000 surgeons/year attend courses on mini-invasive and laparoscopic surgery.
+	- At IRCAD, there are also two research and dev teams. One about Robotics, and an another one about Computer Vision. FW4SPL is the framework developed by this team.
       
 ----
-           
-IHU
+      
+:class: text-small
+     
+IHU Strasbourg
 =================
 
      
 .. image:: images/ihu.jpg 
            :width: 80%
            
-Mini-invasive surgery guided by image
+- Institut Hospitalier Universitaire
+- Mini-invasive surgery guided by image
 
 .. note::
-    - Institute located next to IRCAD...
+	- IHU is located next to IRCAD.
+	- It is a research center about mini-invasive surgery guided by image.
+	- IHU also contributes to FW4SPL.
     
     
 ----
@@ -83,6 +92,9 @@ FW4SPL meaning
 
 - FrameWork for Software Production Line
 - Nickname: *F4S* -> *Forces* [fɔʁsjz]
+
+.. note::
+	- Also a disclaimer
 
 ----
 
@@ -175,14 +187,13 @@ IRCAD context
 .. raw:: html
 
        <div class="legend">Augmented reality</div>
-       <video width="800" height="600" controls>
+       <video width="800" height="600" controls loop>
           <source src="../git/RMLL/videos/rdARinteractive1.mov" >
           Your browser does not support the video tag.
        </video>
        
 ----
 
-:data-x: r-200
 :data-y: r-300
 :data-scale: 1.2
 
@@ -205,7 +216,9 @@ IRCAD R&D team
 - Internships (4) 
    
 .. note::
-    The team who work on these softwares contains...
+    - Around 20 people
+	- Everyone work on medical applications
+	- Engineers maintain the framework
 
 ----
 
@@ -234,6 +247,7 @@ FW4SPL characteristics
 - Applications built in XML
 - Multi platforms (Windows, Linux, OSX, Android)
 - Dependencies on many open source libraries
+- Features for medical imaging, but not limited to
 - Licensed under LGPL
 
 .. _OSGi: http://www.osgi.org
@@ -252,22 +266,13 @@ FW4SPL history
 - 2010 : PoC **Sofa** (Altran-Est)
 - 2011 : PoC **Kinect** (Altran-Est), VRRender 0.9 (open)
 - 2013 : Creation of the FW4SPL board
-
-.. note::
-	- Sofa: biomechanical engine
-
-----
-
-:data-x: r-450
-
 - 2014 : Switched to **CMake** for building
 - 2014 : Migrated to **GitHub** and **Bitbucket** repositories
 - 2014 : Started **Android** support
 - 2015 : Created a blog for developers
 
 .. note::
-
-    - VRRender: mesh/image viewer - mettre une image !
+	- Sofa: biomechanical engine
 
 ----
 
@@ -371,8 +376,8 @@ Service
 - State pattern
 
 .. note::
-	- constat pour chaque fonctionnalité il faut toujours configurer, initialiser
-	- update on peut répéter et arrêter
+	- we can observe that for each functionnality, we always have to configure, then initialize, update and stop
+	- update can be repeated
 
 ----
 
@@ -697,46 +702,46 @@ Outline
 
 :data-x: r-1500
 
+Component in FW4SPL
+========================
+
+- Also called *Bundle*
+- Dynamic library, loaded on demand
+- Group services, by theme and/or by dependency
+- Examples: 
+    - **ioVTK**: reading/writing image or mesh data from VTK formats
+    - **uiImageQt**: user interface controls using Qt to manipulate images
+
+----
+
 Component based approach
 ========================
+
+Benefits
+***********
+
+- Code reuse without recompiling
+- Improve external dependencies management (VTK, ITK, Qt,...)
+- Easier support
+- Easier collaborative work
 
 Examples
 ***********
 
 - Eclipse,...
 
-Benefits
-***********
-
-- Code reuse without recompiling
-- Easier support
-- Easier collaborative work
-- To split code and to improve external dependencies management (VTK, ITK, Qt,...)
-
-
 .. note::
-    - Reuse code in another application, without recompiling your program
-    - Easier support EXAMPLE correction of bug
+	- Code split
+	- Reuse code in another application, without recompiling your program, even no link of your application against a library
+	- Easier support EXAMPLE correction of bug
     
-----
-
-Component in FW4SPL
-========================
-
-- Also called *Bundle*
-- Group services, by theme and/or by dependency
-- Loaded dynamically
-- Examples: 
-    - **ioITK**: reading/writing image or mesh data with ITK formats
-    - **uiImageQt**: user interface controls using Qt to manipulate images
-
 ----
 
 Content of a Bundle
 ========================
 
 - Xml description file : **plugin.xml**
-- Dynamic libraries ( .so, .dll, .dylib)
+- Library binary ( .so, .dll, .dylib)
 - Other shared resources ( icons, sounds, ... )
 
 .. note::
@@ -896,11 +901,11 @@ Discussion
 
 ----
 
-Application design
-=======================
+Design of a new application
+============================
 
-- Write a new xml
-- Only use the subset of bundles you need
+- Write a new xml configuration file (plugin.xml)
+- Pick the bundles you need (profile.xml)
 - Write new services
 - Create new bundles/libraries
 - Share common code in regular shared libraries (*.so,*.dll)
@@ -925,7 +930,7 @@ Outline
 
 :data-y: r1500
 
-Where can I find documentation ?
+Online documentation
 ========================================
 
 - Documentation `<http://fw4spl-doc.readthedocs.org/>`_
@@ -933,12 +938,15 @@ Where can I find documentation ?
 
 ----
 
-Where can I download FW4SPL ?
+Downloading FW4SPL
 ==============================
 
 - Github : `<https://github.com/fw4spl-org>`_
 - BitBucket : `<https://bitbucket.org/fw4splorg>`_
-- Do not use the obsolete googlecode page `<https://code.google.com/p/fw4spl/>`_ 
+- Do not use the obsolete googlecode page !!! `<https://code.google.com/p/fw4spl/>`_ 
+
+.. note::
+	- googlecode may still be in the search engine results 
 
 ----
 
@@ -950,12 +958,13 @@ Current stable version : 0.10.1
 
 Current development version : 0.10.2
 **************************************
-- Strongly advised for new software (communication API is simpler)
+- Strongly advised for a new software (communication API is simpler)
 - For now need patches repositories, only available on bitbucket
 
 .. code:: bash
 
     hg qclone https://bitbucket.org/fw4splorg/fw4spl-patches
+
 
 ----
 
@@ -966,13 +975,19 @@ Repositories
 Type      Sources     Dependencies
 ========= ==========  ===============
 Main      fw4spl      fw4spl-deps
-Extended  fw4spl-ext  fw4spl-deps-ext
-AR        fw4spl-ar   fw4spl-deps-ar
+Extended  fw4spl-ext  fw4spl-ext-deps
+AR        fw4spl-ar   fw4spl-ar-deps
 ========= ==========  ===============
 
+Third-part libraries
+*********************
+
+- Hard to be compatible with different versions
+- We distribute automated scripts (CMake SuperBuild)
 
 .. note::
 	- dependencies = external libraries (examples)
+	- before building fw4spl, you must build dependencies
 	- extended : work in progress
  
 ----
@@ -1078,6 +1093,15 @@ Augmented reality repository
 
 :data-y: r1500
 
+Debian Integration
+===================
+
+- Jessie
+- Previous stable version 0.9.2
+- No external dependency management ! :)
+
+----
+
 Stay tuned !!!
 ================
 
@@ -1101,10 +1125,15 @@ Coming in September 2015
        
 ----
 
+:class: centered
 :data-y: r3500
 
 Thank you !
-**************
+=============
+
+fbridault@ircad.fr
+
+johan.moreau@ircad.fr
 
 
 
