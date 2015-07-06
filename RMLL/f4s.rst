@@ -1071,23 +1071,18 @@ Augmented reality repository
           Your browser does not support the video tag.
        </video>
        
-- *VideoTracking* : Video tracking
+- *DroidTracking* : Tag tracking on Android devices
 
 ----
 
 :data-x: r-350
 
-
 .. raw:: html
 
        <video width="800" height="600" controls>
-          <source src="../git/RMLL/videos/videotracking.mp4" >
+          <source src="../git/RMLL/videos/droidtracking.mp4" >
           Your browser does not support the video tag.
        </video>
-
-
-.. note::
-    - VideoTracking requires a calibration
 
 ----
 
