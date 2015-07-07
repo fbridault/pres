@@ -6,14 +6,6 @@
 :css: css/presentation.css
 :skip-help: true
 
-.. role:: main-color
-.. role:: big-bold
-.. role:: bold-color
-.. role:: big-bold-color
-.. role:: funny-font
-
-.. role:: mail
-
 ----
 
 :id: circle-no-background
@@ -29,7 +21,7 @@ FW4SPL, a framework for applications based on medical imaging.
 
 **Flavien Bridault**
 
-*RMLL 2015, Beauvais, Wednesday, 8th 2015*
+*RMLL 2015 - Beauvais, Wednesday, 8th 2015*
 
 ----
 
@@ -45,12 +37,12 @@ IRCAD (Strasbourg, France)
            
 - Institut de Recherche contre les Cancers de l'Appareil Digestif
 - Created by Jacques Marescaux in 1994
-- Training center/Research
+- Training center - Research
 
 .. note::
 	- IRCAD is a research institute against digestive cancer. It was created...
-	- It is known worldwide especially because of its training cancer, where 4000 surgeons/year attend courses on mini-invasive and laparoscopic surgery.
-	- At IRCAD, there are also two research and dev teams. One about Robotics, and an another one about Computer Vision. FW4SPL is the framework developed by this team.
+	- It is known worldwide especially because it is a training center, where 4000 surgeons/year attend courses on mini-invasive and laparoscopic surgery.
+	- There are also two research and development teams. One about Robotics, and an another one about Computer Vision. FW4SPL is the framework developed by this team.
       
 ----
       
@@ -98,31 +90,6 @@ FW4SPL meaning
 
 ----
 
-:class: square-background
-:data-y: r1500
-
-Outline
-==================================================================
-
-- *Introduction*
-- Object/Service approach
-- Communication
-- Component based approach
-- Discussion
-- Getting started
-
-.. note::
-
-    - Introduction - 5min
-    - Object/Service approach - 10 min
-    - Communication -5min 
-    - Component based approach - 5min
-    - Getting started - 10min
-    - Conclusion - 5min
-
-
-----
-
 :id: ircad-context
 
 IRCAD context
@@ -165,6 +132,9 @@ IRCAD context
           Your browser does not support the video tag.
        </video>
 
+.. note::
+	Thanks to the 3D segmentation, we can help the surgeon to analyse a patient pathology. We worked on tools that help to plan the surgery. This activity has led to create a start-up called Visible Patient.
+
 ----
 
 :data-y: r400
@@ -177,6 +147,8 @@ IRCAD context
           Your browser does not support the video tag.
        </video>
        
+.. note::
+	We also worked on medical simulators in laparoscopy. Laparoscopy is a way to perform a surgery with only small incisions in the abdomen. Surgeons interact with mechanical instruments and watch the organs through camera. Simulators help them to train without a . This activity has led to create a start-up called Digital Trainers.
        
 ----
 
@@ -192,6 +164,9 @@ IRCAD context
           Your browser does not support the video tag.
        </video>
        
+.. note::
+	Today we are focused on augmented reality. In laparoscopy, the surgeon has a very tight field of view. We superimpose informations on the video to help them during the surgery, for instance here, the location of the tumor on a liver.
+
 ----
 
 :data-y: r-300
@@ -217,24 +192,21 @@ IRCAD R&D team
    
 .. note::
     - Around 20 people
-	- Everyone work on medical applications
-	- Engineers maintain the framework
 
 ----
 
-IRCAD R&D needs
-=================
+Why a framework ?
+==================
 
-- Quick development/prototyping on different plaforms
-- Maximal source code re-using
+- Quick development, reuse source code
 - Intensive use of open source libraries (boost, Qt, VTK, ITK,...) 
-- Trainees/phd (students) works integrated but fragmented
-- Facilitate collaborations (source code available or not)
+- Integrate trainees/students/researchers/partners code
 
 .. note::
-
-    - software/prototype - Windows, OSX, Linux, Android, IOs
-    - sample with image filter, something...
+	- software/prototype - Windows, OSX, Linux, Android, IOs
+	- reuse source code
+	- we don't want people to work on different library versions, with different options,...
+	- we need to integrate the different applications/fragmented code
     
 ----
 
@@ -243,36 +215,32 @@ FW4SPL characteristics
 
 - Object/services design
 - Component based (inspired by OSGi_)
-- Developed in C++
 - Applications built in XML
+- Developed in C++
 - Multi platforms (Windows, Linux, OSX, Android)
 - Dependencies on many open source libraries
-- Features for medical imaging, but not limited to
-- Licensed under LGPL
+- Licensed under **LGPL**
 
 .. _OSGi: http://www.osgi.org
 
 .. note::
-    XML, not common to build applications
+	- To match all these goals...
+	- XML, not common to build applications
     
 ----
 
-FW4SPL history
+Important dates
 =================
 
-- 2004-2007 : fw4spl project
-- 2007-2009 : **VRRender** 0.7 (free)
-- 09/2009 : fw4spl became open-source (LGPL)
-- 2010 : PoC **Sofa** (Altran-Est)
-- 2011 : PoC **Kinect** (Altran-Est), VRRender 0.9 (open)
+- 2004 : creation of FW4SPL project
+- 2009 : FW4SPL became open-source (LGPL)
+- 2010-2011 : PoC **Sofa** and **Kinect** (Altran-Est)
 - 2013 : Creation of the FW4SPL board
-- 2014 : Switched to **CMake** for building
-- 2014 : Migrated to **GitHub** and **Bitbucket** repositories
-- 2014 : Started **Android** support
-- 2015 : Created a blog for developers
 
 .. note::
 	- Sofa: biomechanical engine
+	- Altran: proof that FW4SPL could be used outside IRCAD
+	- Visible Patient was created in 2013 to commercialize the planning applications,...
 
 ----
 
@@ -283,21 +251,11 @@ FW4SPL history
 Outline
 ==================================================================
 
-- Introduction
 - *Object/Service approach*
-- Component based approach
 - Communication
+- Component based approach
 - Discussion
 - Getting started
-
-.. note::
-
-    - Introduction - 5min
-    - Object/Service approach - 10 min
-    - Component based approach - 5min
-    - Communication - 10min 
-    - Getting started - 5min
-    - Conclusion - 5min
 
 ----
 
@@ -310,15 +268,15 @@ What is the Object/Service approach ?
 
 :data-x: r1500
 
-Classic approach
-====================
+Classic object-oriented approach
+=================================
 
 - an object (i.e. an image) is represented by a class.
 
 ----
 
 :class: centered
-:data-y: r250
+:data-y: r270
 :data-scale: 0.5
 
 .. image:: images/Image.png
@@ -329,7 +287,7 @@ Classic approach
 :data-scale: 1
 :data-y: r250
 
-- this class contains all functionalities working on the object (reading, writing, visualization,image analysis, ...)
+- this class contains all functionalities working on the object (read, write, filter, visualize, ...)
 
 ----
 
@@ -354,35 +312,32 @@ Limits of this approach
 
 Solution
 ***********
-1. Split data and functions
-2. Put them in different files
-3. Put them in different libraries
+- Split data and functions
 
 .. note::
 
     - Too many functions, if team continue to add functions
-    - Many dependencies required (itk,vtk,qt,dcmtk,...) even if you need just cropping an image
+    - Many dependencies required (itk,vtk,qt,dcmtk,...) even if you just need  to crop an image
     - Everyone work on the same file
-    - Put them in different files and libraries
 
 ----
 
 Service
 ============================
 
-- Only one functionnality (Read, Crop,...)
+- Only one functionality (Read, Crop, Visualize...)
 - Class of services (IReader, IOperator, IVisu)
-- Basically an helper/observer, but can be instantiated
 - State pattern
 
 .. note::
-	- we can observe that for each functionnality, we always have to configure, then initialize, update and stop
+	- to this end, we use to concept of service
+	- we can observe that for each process, we always have to repeat the same execution pattern, life cycle, configure, then initialize, update and stop
 	- update can be repeated
 
 ----
 
 :class: centered
-:data-y: r450
+:data-y: r400
 :data-scale: 0.8
 
 .. image:: images/state.png
@@ -403,7 +358,12 @@ Service
 
 .. image:: images/IService02.png
            :width: 120%
-       
+
+.. note::
+	- Common interface 4 methods
+	- sub-classes for each type
+	- one service for each functionality
+     
 ----
 
 :data-scale: 0.15
@@ -412,8 +372,7 @@ Service
 
 DcmtkReaderSrv
 ================
-    
-- setConfiguration(cfg) : set a string that represents the url on network
+
 - configure() : verify if url is ok
 - start() : do nothing
 - update() : read the data ( equivalent to **readImageFromPacsWithDcmtk()** )
@@ -426,7 +385,6 @@ DcmtkReaderSrv
 ItkCropOperatorSrv
 ===================
     
-- setConfiguration(cfg) : set a cropping region
 - configure() : verify if the cropping region is valid
 - start() : do nothing
 - update() : compute the cropping on image and set the new data (equivalent to **cropImageWithItk** )
@@ -439,7 +397,6 @@ ItkCropOperatorSrv
 VtkQtVisuSrv
 ===================
     
-- setConfiguration(cfg) : set title and window size
 - configure() : verify if the screen support this size
 - start() : initialize Qt frame and vtk pipeline and show the frame
 - update() : check the buffer, if it has changed, refresh the vtk pipeline
@@ -447,7 +404,6 @@ VtkQtVisuSrv
 
 .. note::
     
-    - setConfiguration(cfg) : set title and window size
     - configure() : verify if the screen support this size
     - start() : initialize Qt frame and vtk pipeline and show the frame (image is not shown if image buffer is null )
     - update() : check if the buffer has be changed, if true, refresh the vtk pipeline to show negato
@@ -455,60 +411,15 @@ VtkQtVisuSrv
 
 ----
 
-:data-x: r-260
-:data-y: r160
-:class: text-small
-
-Program
-===================
-
-.. code:: c++
-
-    Object* img = new Image();
-    IService* visu = new VtkQtVisuSrv();
-    visu->setObject( img );
-    visu->setConfiguration( visuParam );
-    visu->configure();
-    visu->start();
-    
-    IService* reader = new DcmtkReaderSrv ();
-    reader->setObject( img );
-    reader->setConfiguration( readerParam );
-    reader->configure();
-    reader->start();
-    reader->update();
-    visu->update();
-    
-    IService* op1 = new ItkCropOperatorSrv ();
-    op1->setObject( img );
-    op1->setConfiguration ( cropParam );
-    op1->configure();
-    op1->start();
-    op1->update();
-    visu->update();
-    
-    IService* op2 = new OpenCVWindowOperatorSrv();
-    ...
-
-.. note::
-    - And now ? What's the next step
-    
-----
-
 :data-y: r600
 :data-scale: 1
 
-Last step
+Application description in XML
 ======================================
 
-Application description in XML
-*******************************
-
-- Grab all objects and services from a file
-	- Launcher
-- Services and objects types are registered dynamically
+- Objects and services classes are registered dynamically
 - Instances are created by a factory
-
+- Application launcher read a XML configuration file
 
 ----
 
@@ -553,8 +464,8 @@ XML configuration file
 Problem
 ==============
 
-Now the reader must be called by UI
-****************************************************
+And if we read a new image later ?
+************************************
 
 - We can no longer call **update()** of the visualization from the xml
 - *How to automate the call ?*
@@ -568,22 +479,12 @@ Now the reader must be called by UI
 Outline
 ==============================
 
-- Introduction
 - Object/Service approach
 - *Communication*
 - Component based approach
 - Discussion
 - Getting started
 
-.. note::
-
-    - Introduction - 5min
-    - Object/Service approach - 10 min
-    - Communication -5min 
-    - Component based approach - 5min
-    - Getting started - 10min
-    - Conclusion - 5min
-    
 ----
 
 :data-y: r1500
@@ -594,18 +495,9 @@ Communication
 - *Signals/Slots* (inspired by Qt)
     - Data -> Service
     - Service <-> Service
-- Replace the old messaging system
-- Only mechanism in latest version
-
-----
-
-Features
-===================
-
-- Signal emission is either:
+- Slot call
     - synchronous
     - asynchronous
-- A slot can be executed on a specific worker thread
 
 ----
 
@@ -685,22 +577,12 @@ Features
 Outline
 ================================
 
-- Introduction
 - Object/Service approach
 - Communication
 - *Component based approach*
 - Discussion
 - Getting started
 
-.. note::
-
-    - Introduction - 5min
-    - Object/Service approach - 10 min
-    - Communication -5min 
-    - Component based approach - 5min
-    - Getting started - 10min
-    - Conclusion - 5min
-    
 ----
 
 :data-x: r-1500
@@ -713,7 +595,7 @@ Component in FW4SPL
 - Group services, by theme and/or by dependency
 - Examples: 
     - **ioVTK**: reading/writing image or mesh data from VTK formats
-    - **uiImageQt**: user interface controls using Qt to manipulate images
+    - **uiImageQt**: Qt widgets to manipulate images
 
 ----
 
@@ -867,25 +749,26 @@ Example : I/O Bundles
 Outline
 ==================================================================
 
-- Introduction
 - Object/Service approach
 - Communication
 - Component based approach
 - *Discussion*
 - Getting started
 
-.. note::
-
-    - Introduction - 5min
-    - Object/Service approach - 10 min
-    - Communication -5min 
-    - Component based approach - 5min
-    - Getting started - 10min
-    - Conclusion - 5min
-    
 ----
 
 :data-y: r-1500
+
+Design of a new application
+============================
+
+- Write a new xml configuration file (plugin.xml)
+- Pick the bundles you need (profile.xml)
+- Write new services
+- Create new bundles/libraries
+- Share common code in regular shared libraries (*.so,*.dll)
+
+----
 
 Discussion
 ================================
@@ -904,17 +787,6 @@ Discussion
 
 ----
 
-Design of a new application
-============================
-
-- Write a new xml configuration file (plugin.xml)
-- Pick the bundles you need (profile.xml)
-- Write new services
-- Create new bundles/libraries
-- Share common code in regular shared libraries (*.so,*.dll)
-
-----
-
 :class: square-background
 :data-rotate-z: 90
 :data-x: r1500
@@ -922,7 +794,6 @@ Design of a new application
 Outline
 ==================================================================
 
-- Introduction
 - Object/Service approach
 - Communication
 - Component based approach
@@ -962,7 +833,7 @@ Current stable version : 0.10.1
 Current development version : 0.10.2
 **************************************
 - Strongly advised for a new software (communication API is simpler)
-- For now need patches repositories, only available on bitbucket
+- Temporarily we need patches repositories, only available on bitbucket
 
 .. code:: bash
 
@@ -985,8 +856,7 @@ AR        fw4spl-ar   fw4spl-ar-deps
 Third-part libraries
 *********************
 
-- Hard to be compatible with different versions
-- We distribute automated scripts (CMake SuperBuild)
+- Build scripts (CMake ExternalProject_Add())
 
 .. note::
 	- dependencies = external libraries (examples)
@@ -1037,7 +907,6 @@ Main repository *(fw4spl)*
 Extended repository *(fw4spl-ext)*
 ===================================
 
-- Timeline data
 - DICOM (dcmtk)
 - OpenIGTLink support
 
@@ -1102,7 +971,7 @@ Debian Integration
 
 ----
 
-:data-y: r3500
+:data-y: r1000
 
 Stay tuned !!!
 ================
@@ -1128,7 +997,7 @@ Coming in September 2015
 ----
 
 :class: centered
-:data-y: r1500
+:data-y: r1000
 
 Thank you !
 =============
@@ -1139,4 +1008,9 @@ fbridault@ircad.fr
 
 johan.moreau@ircad.fr
 
+|
+|
 
+	Presentation made with Hovercraft_
+
+.. _Hovercraft: https://github.com/regebro/hovercraft
