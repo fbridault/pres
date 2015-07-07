@@ -672,9 +672,9 @@ Extract of plugin.xml (ioITK)
     </plugin>
 
 .. note::
-    - This shows how to register services in the factory
+	- This shows how to register services in the factory
 	- This helps to load bundles dynamically
-    - Don't talk about extension points
+	- Don't talk about extension points
     
 ----
 
