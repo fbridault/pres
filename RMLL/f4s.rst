@@ -40,7 +40,7 @@ IRCAD (Strasbourg, France)
 - Training center - Research
 
 .. note::
-	- IRCAD is a research institute against digestive cancer. It was created...
+	- IRCAD is a research institute against digestive system cancers.
 	- It is known worldwide especially because it is a training center, where 4000 surgeons/year attend courses on mini-invasive and laparoscopic surgery.
 	- There are also two research and development teams. One about Robotics, and an another one about Computer Vision. FW4SPL is the framework developed by this team.
       
