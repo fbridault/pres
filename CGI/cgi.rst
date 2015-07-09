@@ -34,6 +34,9 @@ Computer Graphics traditionnel
 - mesh + physics + simulation -> image
 - Les images synthétiques sont sans vie, il nous manque les données pour recréer les petits détails
 
+.. note::
+	- coucou !
+
 ----
 
 Keynote

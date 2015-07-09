@@ -1002,11 +1002,11 @@ Coming in September 2015
 Thank you !
 =============
 
-fw4spl@gmail.com
+fw4spl at gmail.com
 
-fbridault@ircad.fr
+fbridault at ircad.fr
 
-johan.moreau@ircad.fr
+johan.moreau at ircad.fr
 
 |
 |
