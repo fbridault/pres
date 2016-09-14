@@ -14,7 +14,7 @@
 |
 |
 
-Enhancement of augmented-reality visualization in surgery. 
+Enhancement of augmented-reality visualization in surgery.
 ============================================================
 
 **Flavien Bridault**
@@ -41,27 +41,103 @@ Background
 
 Research engineer at IRCAD (2014)
 ***************************************
-- Application development (3DSurg, Lasar, Dosimap)
+- Application development (**3DSurg**, **Lasar**, **Dosimap**)
 - FW4SPL (in-house software framework) enhancements, focus on simplicity and productivity
 - Graphics programming
 
 ----
 
-Challenges in Augmented-Reality visualization
-=================================================
+Context
+==============
 
-Disclaimer
-*************
-- We won't speak about how to register or deform organs
-- Only visualization !
+- IRCAD R&D team engaged in AR software (**3DSurg**, **Lasar**, **Dosimap**)
+- Historically and still today, the focus is:
+    - Segmentation
+    - Registration
+    - Tracking
+    - Deformation
+- So far, few work on visualization !
 
 ----
 
-Challenges in Augmented-Reality visualization
+Visualization
+==============
+
+Previous work
+****************
+- Our rendering backend was outdated
+- We have worked last two years to get a modern renderer
+
+Now start the real interesting work !
+*******************************************
+
+- Improve the rendering algorithm of our software
+- End-of-studies project of a student (Florent Nuttens) (**3DSurg**)
+- Work package planned on **Lasar2**
+
+----
+
+Our plans so far...
 =================================================
 
-Direct volume rendering 
-**************************
+1. Improve virtual world incrustation
+****************************************
+2. Enhance volume rendering
+******************************
+3. Annotations
+*********************
+4. ...
+***********
+
+----
+
+:class: square-background
+
+|
+
+.. image:: images/we_need_you.jpg
+           :width: 30%
+
+We need you !
+**************
+
+----
+
+1/ Improve virtual world incrustation
+========================================
+
+- How to mix virtual data/information with real-world ?
+
+.. raw:: html
+
+    <center>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/uVDxMr-47kU?t=5m26s" frameborder="0" allowfullscreen></iframe>
+    </center>
+
+----
+
+1/ Improve virtual world incrustation
+========================================
+
+- Context (clear-view)
+- Depth perception (truc)
+
+----
+
+1/ Improve virtual world incrustation
+========================================
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../git/fellowMeeting_20160915/videos/arbreathing-visu.mp4" >
+          Your browser does not support the video tag.
+       </video>
+
+----
+
+2/ Enhance volume rendering
+=================================================
 
 - Organs segmentation via transfer functions
 - Used to be slow
@@ -69,8 +145,10 @@ Direct volume rendering
 - Usually employed with static 3D images
 
 .. raw:: html
-    
+
+    <center>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/703Zzl8YYJk" frameborder="0" allowfullscreen></iframe>
+    </center>
 
 ----
 
@@ -84,44 +162,12 @@ Surfacic meshes rendering
 - Well-suited for GPUs (only triangles !)
 - Easier to apply deformations
 
-
-----
-
-
-:class: square-background
-
-|
-|
-
-How to take advantage of latest graphics hardware in Augmented-Reality ?
-===========================================================================
-
-
-----
-
-3DSurg
-====================
-
-Breathing
-***************
-
-- Context view
-- Vessels
-
-.. raw:: html
-
-       <div class="legend">ARBreathing</div>
-       <video width="800" height="600" controls>
-          <source src="../git/fellowMeeting_20160915/videos/arbreathing-visu.mp4" >
-          Your browser does not support the video tag.
-       </video>
-       
 ----
 
 Volume Rendering
 ******************
 
-- 
+-
 - Vessels annotation
 
 
@@ -142,16 +188,11 @@ Lasar
 :data-x: r0
 :data-y: r1500
 
-Demonstration
+Conclusion
 ===========================
 
-.. raw:: html
+- Sometimes it is just a matter of taste
 
-       <video width="640" height="360" controls>
-          <source src="../videos/tutos.mp4" >
-          Your browser does not support the video tag.
-       </video>
-       
 ----
 
 :class: centered
