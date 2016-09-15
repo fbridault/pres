@@ -80,7 +80,7 @@ Now start the real interesting work !
 Our plans so far...
 =================================================
 
-1. Improve virtual world incrustation
+1. Compositing
 ****************************************
 2. Shading
 ******************************
@@ -103,7 +103,7 @@ We need you !
 
 ----
 
-1/ Improve VR incrustation
+1/ Compositing
 ========================================
 
 - How to mix virtual data/information with real-world ?
@@ -116,7 +116,7 @@ We need you !
 
 ----
 
-1/ Improve VR incrustation
+1/ Compositing
 ========================================
 
 - Improve ghosted-views with focus layers :
@@ -145,7 +145,7 @@ We need you !
     
 ----
 
-1/ Improve VR incrustation
+1/ Compositing
 ========================================
 
 - Improve ghosted-views with focus layers :
@@ -176,7 +176,7 @@ We need you !
     
 ----
 
-1/ Improve VR incrustation
+1/ Compositing
 ========================================
 
 - Tests on ARBreathing :
@@ -190,7 +190,7 @@ We need you !
 
 ----
 
-1/ Improve VR incrustation
+1/ Compositing
 ========================================
 
 - Cut-away views :
@@ -219,11 +219,13 @@ We need you !
 :data-x: r0
 :data-y: r1500
 
-1/ Improve VR incrustation
+1/ Compositing
 ========================================
 
-- Stereoscopy ?
-    - Storz stereo endoscopes and 3D displays
+Stereoscopy ?
+*****************
+
+- Use Storz stereo endoscopes and 3D displays (**Lasar2**)
     
 ----
 
@@ -236,8 +238,8 @@ We need you !
 Direct volume rendering
 **************************
 
+- Raw images
 - Classification of intensities into colors
-- Raw scan can be used
 - Used to be slow
 - Not well adapted for GPUs before 2001
 - Usually employed with static 3D images
@@ -261,45 +263,93 @@ Direct volume rendering
 .. image:: images/vr2.png
            :width: 90%
 
+----
+
+:data-x: r-100
+:data-y: r0
+:data-scale: 0.6
 
 ----
+
+:data-x: r-700
 
 .. raw:: html
 
     <center>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/703Zzl8YYJk" frameborder="0" allowfullscreen></iframe>
+    <iframe width="800" height="600" src="https://www.youtube.com/embed/703Zzl8YYJk" frameborder="0" allowfullscreen></iframe>
     </center>
 
 ----
 
-Challenges in Augmented-Reality visualization
+:data-x: r0
+:data-y: r1500
+:data-scale: 1.0
+
+
+2/ Shading
+=================================================
+
+Surfacic meshes 
+*****************
+
+- Need a segmentation step
+- Well-suited for GPUs (only triangles !)
+- Nice interfaces, helpful to apply deformations
+- Lot of room for improvement
+
+----
+
+
+2/ Shading
 =================================================
 
 Surfacic meshes rendering
 ***************************
 
-- Need an automated or a manual segmentation step
-- Well-suited for GPUs (only triangles !)
-- Easier to apply deformations
+- Use different illumination models
+- Rather look at non-photorealistic techniques
+
+.. image:: images/tvasurg1.jpg
+           :width: 75%
+           :class: tiled
+           
+`The Toronto Video Atlas of Liver, Pancreas and Transplant Surgery <http://pie.med.utoronto.ca/TVASurg/TVASurg_content/surg/PB_typeICholeCyst.html>`_
 
 ----
 
-Volume Rendering
-******************
+2/ Shading
+=================================================
 
--
-- Vessels annotation
+Surfacic meshes rendering
+***************************
 
+           
+- Ambient occlusions
 
+.. raw:: html
+
+       <video width="640" height="480" controls>
+          <source src="../git/fellowMeeting_20160915/videos/sao.mp4" >
+          Your browser does not support the video tag.
+       </video>
+       
 ----
 
-Lasar
-====================
+3/ Annotations
+===================
 
-- Tumor views in AR
-    - Depth feeling ?
-- Needle insertion
-    - Feedback
+- Structures of interest, vessels
+- Interesting only for education ?
+
+
+.. image:: images/annotation.png
+           :width: 90%
+
+.. raw:: html
+
+    <div class="legend">
+    Anatomical annotation on vascular structure in volume rendered images, Jiang et al., 2010
+    </div>
 
 ----
 
@@ -311,7 +361,13 @@ Lasar
 Conclusion
 ===========================
 
-- Sometimes it is just a matter of taste
+- Lots of possibilities
+    - Prioritize
+    - Keep in mind we want to improve understanding
+- Experiments
+    - Need clinicians to make propositions
+    - Need clinicians to validate    
+- Mix surface rendering and volume rendering
 
 ----
 
