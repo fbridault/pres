@@ -13,6 +13,7 @@
 |
 |
 |
+|
 
 Enhancement of augmented-reality visualization in surgery.
 ============================================================
@@ -46,6 +47,35 @@ Research engineer at IRCAD (2014)
 - Graphics programming
 
 ----
+
+Augmented-reality
+==================
+
+Add virtual information on top of reality
+*********************************************
+
+- Video stream + 3D scene on a screen
+- Glasses + 3D scene through transparent screen
+
+.. image:: images/ar1.png
+           :width: 35%
+           :class: tiled
+
+.. image:: images/ar2.png
+           :width: 35%
+           :class: tiled
+
+----
+
+:data-x: r-150
+:data-y: r0
+:data-scale: 0.5
+
+----
+
+:data-x: r0
+:data-y: r1500
+:data-scale: 1.0
 
 Context
 ==============
@@ -128,21 +158,21 @@ We need you !
 .. image:: images/clearview2.png
            :width: 30%
            :class: right
-           
+
 .. image:: images/clearview3.png
            :width: 30%
            :class: tiled
-           
+
 .. image:: images/clearview4.png
            :width: 30%
            :class: right
-           
+
 .. raw:: html
 
     <div class="legend">
     ClearView:An Interactive Context Preserving Hotspot Visualization Technique, Jens Krüger et al., 2005
     </div>
-    
+
 ----
 
 1/ Compositing
@@ -152,28 +182,28 @@ We need you !
 
 .. image:: images/rvrar2.png
            :width: 30%
-           :class: tiled               
+           :class: tiled
 
 .. image:: images/rvrar3.png
            :width: 30%
            :class: right
-           
+
 - Hand occlusions
 
 .. image:: images/rvrar1.png
            :width: 30%
            :class: tiled
-           
+
 .. image:: images/rvrar4.png
            :width: 30%
            :class: right
-           
+
 .. raw:: html
 
     <div class="legend">
     Real-time Volume Rendering for High Quality Visualization in Augmented Reality, Kutter et al., 2008
     </div>
-    
+
 ----
 
 1/ Compositing
@@ -200,24 +230,21 @@ We need you !
            :class: tiled
 
 ----
-         
+
 :data-x: r-800
 :data-y: r0
-       
+
 .. image:: images/smart2.png
            :width: 80%
            :class: tiled
-           
+
 .. raw:: html
 
     <div class="legend">
     GPU-based Smart Visibility Techniques for Tumor Surgery Planning, Kubisch et al., 2010
     </div>
-    
-----
 
-:data-x: r0
-:data-y: r1500
+----
 
 1/ Compositing
 ========================================
@@ -226,11 +253,59 @@ Stereoscopy ?
 *****************
 
 - Use Storz stereo endoscopes and 3D displays (**Lasar2**)
-    
+
 ----
 
 :data-x: r0
 :data-y: r1500
+
+2/ Shading
+=================================================
+
+Surfacic meshes
+*****************
+
+- Need a segmentation step
+- Well-suited for GPUs (only triangles !)
+- Nice interfaces, helpful to apply deformations
+- Lot of room for improvement
+
+----
+
+2/ Shading
+=================================================
+
+Surfacic meshes rendering
+***************************
+
+- Use different illumination models
+- Rather look at non-photorealistic techniques
+
+.. image:: images/tvasurg1.jpg
+           :width: 75%
+           :class: tiled
+
+`The Toronto Video Atlas of Liver, Pancreas and Transplant Surgery <http://pie.med.utoronto.ca/TVASurg/TVASurg_content/surg/PB_typeICholeCyst.html>`_
+
+----
+
+2/ Shading
+=================================================
+
+Surfacic meshes rendering
+***************************
+
+
+- Ambient occlusions
+
+.. raw:: html
+
+       <video width="640" height="480" controls>
+          <source src="../git/fellowMeeting_20160915/videos/sao.mp4" >
+          Your browser does not support the video tag.
+       </video>
+
+----
 
 2/ Shading
 =================================================
@@ -243,11 +318,9 @@ Direct volume rendering
 - Used to be slow
 - Not well adapted for GPUs before 2001
 - Usually employed with static 3D images
+- May be interesting for AR
 
 ----
-
-:data-x: r0
-:data-y: r1500
 
 2/ Shading
 =================================================
@@ -258,7 +331,7 @@ Direct volume rendering
 .. image:: images/vr1.png
            :width: 75%
            :class: tiled
-           
+
 
 .. image:: images/vr2.png
            :width: 90%
@@ -267,7 +340,7 @@ Direct volume rendering
 
 :data-x: r-100
 :data-y: r0
-:data-scale: 0.6
+:data-scale: 0.7
 
 ----
 
@@ -284,56 +357,6 @@ Direct volume rendering
 :data-x: r0
 :data-y: r1500
 :data-scale: 1.0
-
-
-2/ Shading
-=================================================
-
-Surfacic meshes 
-*****************
-
-- Need a segmentation step
-- Well-suited for GPUs (only triangles !)
-- Nice interfaces, helpful to apply deformations
-- Lot of room for improvement
-
-----
-
-
-2/ Shading
-=================================================
-
-Surfacic meshes rendering
-***************************
-
-- Use different illumination models
-- Rather look at non-photorealistic techniques
-
-.. image:: images/tvasurg1.jpg
-           :width: 75%
-           :class: tiled
-           
-`The Toronto Video Atlas of Liver, Pancreas and Transplant Surgery <http://pie.med.utoronto.ca/TVASurg/TVASurg_content/surg/PB_typeICholeCyst.html>`_
-
-----
-
-2/ Shading
-=================================================
-
-Surfacic meshes rendering
-***************************
-
-           
-- Ambient occlusions
-
-.. raw:: html
-
-       <video width="640" height="480" controls>
-          <source src="../git/fellowMeeting_20160915/videos/sao.mp4" >
-          Your browser does not support the video tag.
-       </video>
-       
-----
 
 3/ Annotations
 ===================
@@ -353,7 +376,6 @@ Surfacic meshes rendering
 
 ----
 
-:class: text-small
 :data-rotate-z: 90
 :data-x: r0
 :data-y: r1500
@@ -366,7 +388,7 @@ Conclusion
     - Keep in mind we want to improve understanding
 - Experiments
     - Need clinicians to make propositions
-    - Need clinicians to validate    
+    - Need clinicians to validate
 - Mix surface rendering and volume rendering
 
 ----
