@@ -13,6 +13,7 @@
 |
 |
 |
+|
 
 Bonnes pratiques C++11
 ==================================================================
@@ -21,34 +22,214 @@ Bonnes pratiques C++11
 
 ----
 
-:class: square-background
-:data-x: r2000
-:data-scale: 1.0
+:data-x: r0
+:data-y: r2700
+:data-rotate-z: 90
 
-|
-|
-|
+Exprimer ses intentions (P.1,P.3)
+===================================
 
-Overall presentation
-==================================================================
+- S'aider de tous les moyens disponibles pour auto-documenter le code.
+
+.. code:: c++
+
+  class Date {
+  // ...
+  public:
+  Month month() const;  // do
+  int month();          // don't
+  // ...
+  };
+
+.. note::
+    - Pour le compilateur et le lecteur
+
+----
+
+:data-x: r-600
+:data-y: r0
+
+- Utiliser les algorithmes nommés:
+
+.. code:: c++
+
+    void f(vector<string>& v)
+    {
+        string val;
+        cin >> val;
+        // ...
+        int index = -1;                    // bad
+        for (int i = 0; i < v.size(); ++i)
+            if (v[i] == val) {
+                index = i;
+                break;
+            }
+        // ...
+    }
+
+    void f(vector<string>& v)
+    {
+        string val;
+        cin >> val;
+        // ...
+        auto p = find(begin(v), end(v), val);  // better
+        // ...
+    }
+
+----
+
+- Itération sur tous les éléments
+
+.. code:: c++
+
+    int i = 0;
+    while (i < v.size()) {
+        // ... do something with v[i] ...
+    }
+
+- Utilisation du range-for:
+
+.. code:: c++
+
+    for (const auto& x : v) { /* do something with x */ }
+    for (auto& x : v) { /* do something with x */ }
+
+- Si possible, là encore utilisation d'un algorithme:
+
+.. code:: c++
+
+    for_each(v, [](int x) { /* do something with x */ });
+
+----
+
+Revue de code
+***************
+
+- use **const** consistently
+- detect code that mimics the standard library (hard)
+- simple for loops vs. range-for loops
+- f(T*, int) interfaces vs. f(span<T>) interfaces
+- naked new and delete
+- functions with many arguments of built-in types
 
 ----
 
 :data-x: r0
-:data-y: r2700
-:data-rotate-z: 90
-:data-scale: 1.2
-:class: text-small
-          
-inline
+:data-y: r1500
+
+Usage du inline
 ==================
 
-- code inliné par 
+Petite function critique
+******************************
+- Evite le *call*
+- La fonction doit être définie dans le header
+- Le mot clé **inline** doit être précisé si l'implémentation est externe à la définition (préférable).
 
 ----
 
-span<T>
-==================
+:data-x: r-600
+:data-y: r0
+
+.. code:: c++
+
+    // Dans la définition
+    class A
+    {
+        ...
+        inline string cat(const string& s, const string& s2) { return s + s2; }
+        ...
+    };
+
+    // A l'extérieur de la définition (plus lisible)
+    class A
+    {
+        ...
+        string cat(const string& s, const string& s2);
+        ...
+    };
+
+    inline string cat(const string& s, const string& s2)
+    {
+        return s + s2;
+    }
+
+----
+
+:data-x: r-800
+:data-y: r0
+
+Attention
+***************
+- Fait partie de l'ABI !
+- Le compilateur reste l'arbitre
+    - Vérifier présence *call* avec vue assembleur dans le debugger
+    - Possible de forcer avec certains compilateurs ex gcc: ``attribute((always_inline))``
+
+----
+
+Revue de code
+***************
+
+- Petites fonctions stables non inlinées
+- Sortir les fonctions inlines de la définition
+
+----
+
+:data-x: r0
+:data-y: r1500
+
+Utilisation des containers
+============================
+
+Notion d'intervalle **span<T>**
+*********************************
+- Ne pas séparer le pointeur et la taille
+
+.. code:: c++
+
+    extern void f2(int* p, int n);
+
+    void g2(int n)
+    {
+        f2(new int[n], m);  // bad: a wrong number of elements can be passed to f()
+    }
+
+    extern void f4(vector<int>&);
+
+    void g3(int n)
+    {
+        vector<int> v(n);
+        f4(v);                     // pass a reference, retain ownership
+    }
+
+----
+
+Fuites de ressources (P.8)
+============================
+
+- Descripteurs (open,fopen)
+
+.. code:: c++
+
+    void f(char* name)
+    {
+        FILE* input = fopen(name, "r");
+        // ...
+        if (something) return;   // bad: if something == true, a file handle is leaked
+        // ...
+        fclose(input);
+    }
+
+    void f(char* name)
+    {
+        ifstream input {name};
+        // ...
+        if (something) return;   // OK: no leak
+        // ...
+    }
+
+- Mémoire (new/delete,malloc,strdup)
 
 ----
 
@@ -71,30 +252,6 @@ unique_ptr<>
 
 ----
 
-Exprimer intentions dans le code
-
-.. code:: c++
-
-    int i = 0;
-    while (i < v.size()) {
-        // ... do something with v[i] ...
-    }
-
-.. code:: c++
-
-    for (const auto& x : v) { /* do something with x */ }
-
-.. code:: c++
-
-    for (auto& x : v) { /* do something with x */ }
-
-.. code:: c++
-    
-    for_each(v, [](int x) { /* do something with x */ });
-    
-
-
-----
 
 Prototypes de fonctions
 =========================
@@ -163,7 +320,7 @@ préconditions
 **************
 - assertions
 
-- postconditions 
+- postconditions
 
 Classes
 =========================
@@ -184,7 +341,7 @@ Préférez classes abstraites pour hiérarchie de classes
         vector<Point> outline;
         Color col;
     };
-    
+
 ----
 
 .. code:: c++

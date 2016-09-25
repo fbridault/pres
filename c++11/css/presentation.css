@@ -15,11 +15,11 @@ h1 {
 font-family: 'Bitter' , serif;
 font-weight: bold;
 text-italic: none;
-font-size: 2em;
+font-size: 1.5em;
 color: #45949d;
 }
 h2 {
-font-size: 1.25em;
+font-size: 1.15em;
 font-family: 'Bitter', serif;
 color: #ba4747;
 }
@@ -133,7 +133,7 @@ font-weight: bold;
 color: #27B57A;
 }
 .code{
-font-size: 1.2em;
+font-size: 1.em;
 }
 .legend{
 font-size: 2.0em;
