@@ -1,0 +1,234 @@
+:title: FW4SPL
+:data-transition-duration: 1250
+:author: Flavien Bridault
+:description: FW4SPL, a framework for applications based on medical imaging
+:keywords: presentation
+:css: css/presentation.css
+:skip-help: true
+
+----
+
+:id: circle-no-background
+
+|
+|
+|
+
+Bonnes pratiques C++11
+==================================================================
+
+**Flavien Bridault**
+
+----
+
+:class: square-background
+:data-x: r2000
+:data-scale: 1.0
+
+|
+|
+|
+
+Overall presentation
+==================================================================
+
+----
+
+:data-x: r0
+:data-y: r2700
+:data-rotate-z: 90
+:data-scale: 1.2
+:class: text-small
+          
+inline
+==================
+
+- code inliné par 
+
+----
+
+span<T>
+==================
+
+----
+
+shared_ptr<>
+==================
+
+Never transfer ownership by a raw pointer (T*)
+
+----
+
+weak_ptr<>
+==================
+
+Never transfer ownership by a raw pointer (T*)
+
+----
+
+unique_ptr<>
+==================
+
+----
+
+Exprimer intentions dans le code
+
+.. code:: c++
+
+    int i = 0;
+    while (i < v.size()) {
+        // ... do something with v[i] ...
+    }
+
+.. code:: c++
+
+    for (const auto& x : v) { /* do something with x */ }
+
+.. code:: c++
+
+    for (auto& x : v) { /* do something with x */ }
+
+.. code:: c++
+    
+    for_each(v, [](int x) { /* do something with x */ });
+    
+
+
+----
+
+Prototypes de fonctions
+=========================
+
+Auto-documenter le code
+
+Nommage
+*******
+- unités (temps: std::chrono )
+
+Typage
+*******
+
+----
+
+Prototypes de fonctions
+=========================
+
+Pointeurs
+*************
+
+Référence
+*************
+
+----
+
+Prototypes de fonctions
+=========================
+
+Entrée
+*********
+
+----
+
+Prototypes de fonctions
+=========================
+
+Entrée/sortie
+***************
+
+----
+
+Prototypes de fonctions
+=========================
+
+Sortie
+********
+
+- que par retour de fonction
+- multiples : tie, struct
+
+Prototypes de fonctions
+=========================
+
+Nombre d'arguments
+**********************
+
+- struct
+
+----
+
+Prototypes de fonctions
+=========================
+
+préconditions
+**************
+- assertions
+
+- postconditions 
+
+Classes
+=========================
+
+Préférez classes abstraites pour hiérarchie de classes
+********************************************************
+
+.. code:: c++
+
+    class Shape {  // bad: interface class loaded with data
+    public:
+        Point center() const { return c; }
+        virtual void draw() const;
+        virtual void rotate(int);
+        // ...
+    private:
+        Point c;
+        vector<Point> outline;
+        Color col;
+    };
+    
+----
+
+.. code:: c++
+
+    class Shape {    // better: Shape is a pure interface
+    public:
+        virtual Point center() const = 0;   // pure virtual function
+        virtual void draw() const = 0;
+        virtual void rotate(int) = 0;
+        // ...
+        // ... no data members ...
+    };
+
+----
+
+Collections
+=============
+
+- map
+- unordered_map
+- set
+- unordered_set
+
+Concepts
+=========================
+
+RAII
+============
+
+
+
+----
+
+:class: centered
+:data-y: r1500
+
+Thank you !
+=============
+
+fbridault at ircad.fr
+
+|
+|
+
+	Presentation made with Hovercraft_
+
+.. _Hovercraft: https://github.com/regebro/hovercraft
