@@ -57,11 +57,11 @@ Add virtual information on top of reality
 - Video stream + 3D scene on a screen
 - Glasses + 3D scene through transparent screen
 
-.. image:: images/ar1.png
+.. image:: images/ar1.jpg
            :width: 35%
            :class: tiled
 
-.. image:: images/ar2.png
+.. image:: images/ar2.jpg
            :width: 35%
            :class: tiled
 
@@ -234,7 +234,7 @@ We need you !
 :data-x: r-800
 :data-y: r0
 
-.. image:: images/smart2.png
+.. image:: images/smart2.jpg
            :width: 80%
            :class: tiled
 
@@ -328,12 +328,12 @@ Direct volume rendering
 Direct volume rendering
 **************************
 
-.. image:: images/vr1.png
+.. image:: images/vr1.jpg
            :width: 75%
            :class: tiled
 
 
-.. image:: images/vr2.png
+.. image:: images/vr2.jpg
            :width: 90%
 
 ----
@@ -365,7 +365,7 @@ Direct volume rendering
 - Interesting only for education ?
 
 
-.. image:: images/annotation.png
+.. image:: images/annotation.jpg
            :width: 90%
 
 .. raw:: html
