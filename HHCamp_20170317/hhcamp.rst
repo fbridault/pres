@@ -74,6 +74,12 @@ FW4SPL
 **
 *"Framework For Software Production Line"*
 
+
+----
+
+- Started in 2004
+- OpenSource since 2009 (LGPL license)
+
 ----
 
 
@@ -115,7 +121,7 @@ The three main concepts
 
 Technology
 *************
-- Written in C++ (Python extension)
+- Written in C++
 - Link with open source libraries (boost, Qt, VTK, ITK, OpenCV, PCL...)
 - Build with CMake
 - Cross-platform : Windows, Linux, MacOSX and Android
@@ -148,7 +154,7 @@ Objects/Services
 ----
 
 :class: centered
-:data-x: r-400
+:data-x: r-500
 :data-y: r0
 :data-scale: 0.8
 
@@ -187,13 +193,34 @@ Slot call
 
 ----
 
-- Started in 2004
-- OpenSource since 2009 (LGPL license)
+XML configurations
+=====================
+
+- Most used interface to write applications in FW4SPL.
+- Allows to share data and services setups
+
+----
+
+:data-scale: 0.75
+:data-x: r-350
+:data-y: r0
+
+.. image:: images/xml.gif
+           :width: 62%
+           :align: left
+           :class: left
+
+.. image:: images/tuto02.gif
+           :width: 25%
+           :align: right
+           :class: right
 
 ----
 
 :class: centered
 :data-scale: 2
+:data-x: r0
+:data-y: r2700
 
 Features and applications
 ===========================

@@ -115,8 +115,14 @@ padding-left: 50px;
 padding-right: 50px;
 }
 
+img.left {
+padding-left: 0px;
+padding-right: 50px;
+}
+
 img.right {
-padding-left: 100px;
+padding-left: 50px;
+padding-bottom: 100px;
 }
 
 /****** Text styles ******/
