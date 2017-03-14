@@ -120,9 +120,13 @@ padding-left: 0px;
 padding-right: 50px;
 }
 
-img.right {
+img.right-center {
 padding-left: 50px;
 padding-bottom: 100px;
+}
+
+img.right {
+padding-left: 50px;
 }
 
 /****** Text styles ******/
@@ -163,6 +167,13 @@ font-size: 0.9em;
 
 .centered {
 text-align: center;
+}
+
+
+.noh1 h1 {
+font-size: 1.25em;
+font-family: 'Bitter', serif;
+color: #ba4747;
 }
 
 .text-small {

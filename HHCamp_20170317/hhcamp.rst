@@ -98,17 +98,28 @@ Target application
 - data storage/communication
 - hardware support
 - robustness
+- productivity
 
 ----
 
-IRCAD/IHU R&D team
-===================
-
+:data-x: r30
+:data-y: r200
+:data-scale: 0.5
 
 .. image:: images/equipe2017.jpg
-           :width: 80%
+           :width: 100%
 
 ----
+
+:data-x: r-30
+:data-y: r-200
+:data-scale: 1
+
+----
+
+:data-x: r0
+:data-y: r2700
+:data-scale: 1
 
 Architecture
 =====================
@@ -197,12 +208,13 @@ XML configurations
 =====================
 
 - Most used interface to write applications in FW4SPL.
-- Allows to share data and services setups
+- Static description of applications.
+- Allow to share data and services setups.
 
 ----
 
 :data-scale: 0.75
-:data-x: r-350
+:data-x: r-400
 :data-y: r0
 
 .. image:: images/xml.gif
@@ -213,7 +225,7 @@ XML configurations
 .. image:: images/tuto02.gif
            :width: 25%
            :align: right
-           :class: right
+           :class: right-center
 
 ----
 
@@ -227,28 +239,82 @@ Features and applications
 
 ----
 
-:class: text-small
 :data-scale: 1
 
 Data
-===================
+======
 
-- Image (1D/2D/3D)
-- Mesh
+Image (1D/2D/3D)
+*******************
+- DICOM: CT, dynaCT and MRI
+- VTK
+- ITK
+- OpenCV
 
-- DICOM : CT, dynaCT and MRI, surface segmentation
+Mesh
+*******
+- DICOM: surface segmentation
+- VTK
+- PCL
 
-- High-efficiency in-house data format
-- Data serialization in xml/json/zip
-- VTK : images and meshes (.vtk, .vti, .vtu)
-- System/process memory managment (data dumping)
+High-efficiency in-house data format
+*************************************
+- Based on JSON(z) + zipped buffers
+- Version managment
+- Allow safe data structure modifications
 
 ----
+
+:data-x: r-600
+:data-y: r0
+
+
+
+----
+
+:data-x: r0
+:data-y: r2700
 
 User interface
 ================
 
-- Application(HMI include) configuration available in xml
+Based on Qt
+*************
+- Classic frames/menus/toolbars/widgets/layouts
+- Style sheet support (CSS)
+
+.. image:: images/tutogui.gif
+           :width: 40%
+           :align: left
+           :class: left
+
+.. image:: images/vrrender_ui.gif
+           :width: 40%
+           :align: right
+           :class: right
+
+----
+
+:data-x: r-500
+:data-y: r0
+:class: noh1
+
+
+User preferences
+*******************
+- User interface settings (size, location, etc...)
+- Store file dialog last paths
+- Set URL, port, etc...
+
+----
+
+:data-x: r0
+:data-y: r2700
+
+Activities
+================
+
+- Application configuration available in xml
 - Activity wizard/serialization/sequencing
 
 ----
