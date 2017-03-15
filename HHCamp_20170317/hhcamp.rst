@@ -25,7 +25,7 @@ Logiciel de réalité virtuelle et augmentée avec FW4SPL.
 ----
 
 :data-x: r0
-:data-y: r2700
+:data-y: r1700
 :data-rotate-z: 90
 :class: text-small
 
@@ -118,7 +118,7 @@ Target application
 ----
 
 :data-x: r0
-:data-y: r2700
+:data-y: r1700
 :data-scale: 1
 
 Architecture
@@ -179,7 +179,7 @@ Objects/Services
 ----
 
 :data-x: r0
-:data-y: r2700
+:data-y: r1700
 :data-scale: 1
 
 Signal/Slot communication
@@ -240,6 +240,7 @@ Features and applications
 ----
 
 :data-scale: 1
+:data-y: r2700
 
 Data
 ======
@@ -273,7 +274,7 @@ High-efficiency in-house data format
 ----
 
 :data-x: r0
-:data-y: r2700
+:data-y: r1700
 
 User interface
 ================
@@ -295,7 +296,7 @@ Based on Qt
 
 ----
 
-:data-x: r-500
+:data-x: r-650
 :data-y: r0
 :class: noh1
 
@@ -306,10 +307,14 @@ User preferences
 - Store file dialog last paths
 - Set URL, port, etc...
 
+.. image:: images/preferences.gif
+           :width: 60%
+           :class: preferences
+
 ----
 
 :data-x: r0
-:data-y: r2700
+:data-y: r1700
 
 Activities
 ================

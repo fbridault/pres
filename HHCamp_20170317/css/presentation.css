@@ -129,6 +129,9 @@ img.right {
 padding-left: 50px;
 }
 
+img.preferences {
+padding-left: 150px;
+}
 /****** Text styles ******/
 .main-color {
 color: #27B57A;
@@ -174,6 +177,9 @@ text-align: center;
 font-size: 1.25em;
 font-family: 'Bitter', serif;
 color: #ba4747;
+}
+.noh1 img.centered {
+text-align: center;
 }
 
 .text-small {
