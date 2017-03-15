@@ -59,6 +59,7 @@ Overview
 
 :class: centered
 :data-scale: 2
+:data-y: r2700
 
 Philosophy
 ==================
@@ -77,11 +78,7 @@ FW4SPL
 
 ----
 
-- Started in 2004
-- OpenSource since 2009 (LGPL license)
-
-----
-
+:data-y: r1700
 
 Motivation
 ============
@@ -99,6 +96,7 @@ Target application
 - hardware support
 - robustness
 - productivity
+
 
 ----
 
@@ -120,6 +118,15 @@ Target application
 :data-x: r0
 :data-y: r1700
 :data-scale: 1
+
+Brief history
+===============
+
+- Started in 2004 at IRCAD
+- OpenSource since 2009 (LGPL license)
+- Developed both by IRCAD and IHU Strasbourg since 2013
+
+----
 
 Architecture
 =====================
@@ -273,7 +280,7 @@ High-efficiency in-house data format
 
 ----
 
-:data-x: r0
+:data-x: r600
 :data-y: r1700
 
 User interface
@@ -313,57 +320,230 @@ User preferences
 
 ----
 
-:data-x: r0
+:data-x: r650
 :data-y: r1700
 
 Activities
-================
+============
 
-- Application configuration available in xml
-- Activity wizard/serialization/sequencing
+Features
+*************************
+- Xml configuration
+- Parameters with optional validation
+- Can be serialized
+- Shipped inside bundles
 
 ----
 
-Visualization
+:data-x: r-650
+:data-y: r0
+:class: noh1
+
+Facilities
+*************
+- Selector
+- Wizard
+
+
+.. raw:: html
+
+       <video width="800" height="600" controls>
+          <source src="../../pres/HHCamp_20170317/videos/activity_selector.mp4" >
+          Your browser does not support the video tag.
+       </video>
+
+----
+
+:data-x: r-750
+:data-y: r0
+:class: noh1
+
+- Sequencer
+
+.. raw:: html
+
+       <video width="800" height="450" controls>
+          <source src="../../pres/HHCamp_20170317/videos/lasar.ogv" >
+          Your browser does not support the video tag.
+       </video>
+
+----
+
+:data-x: r1400
+:data-y: r1700
+:class: text-small
+
+Basic visualization
 ======================
 
-- 2D/3D generic scene (VTK/Qt)
+- 2D/3D generic scene (*VTK*/*Qt*)
 - 2D Multi-Planar Reconstruction
 - 3D meshes with optional 3D orthogonal MPR
-- 3D volume rendering with editable and transfer func
 - 2D or 3D widgets synchronization
-- VTK/Ogre
-- MPR curved
+- 3D volume rendering with editable and transfer func
 - Measuring tool features and landmarks
 
 ----
 
+:data-x: r-400
+:data-y: r0
+
+.. raw:: html
+
+       <video width="800" height="450" controls>
+          <source src="../../pres/HHCamp_20170317/videos/vrrender.ogv" >
+          Your browser does not support the video tag.
+       </video>
+
+----
+
+:data-y: r1700
+:data-x: r300
+
 Network
 ======================
 
-- openIGTLink (un exemple !)
-- DICOM PACS(DCTMK, ODIL in progress...)
-- MIDAS communication
+- OpenIGTLink support
+- DICOM network (DCTMK, ODIL in progress...)
+- MIDAS database communication
+
+.. image:: images/openigtlink.gif
+           :width: 44%
+           :align: left
+           :class: left
+
+.. image:: images/dicom_pacs.gif
+           :width: 38%
+           :align: right
+           :class: right
 
 ----
 
-Video
-==========
+:data-x: r0
 
-- Webcam support (QTMultimedia)
-- Video file/streaming support (QTMultimedia/VLC)
-- Kinect/Sense/RealSense support (not yet open :( )
+Video support
+==============
+
+- Webcam (QTMultimedia)
+- Video file/streaming (QTMultimedia/VLC)
+- Kinect/Sense/RealSense (not open-source yet :/ )
+
+
+.. image:: images/webcam.gif
+           :width: 37%
+           :align: left
+           :class: left
+
+.. image:: images/kinfu.gif
+           :width: 44%
+           :align: right
+           :class: right
 
 
 ----
 
-main repository :
-*********************
-- Embedded python
-- Around 15 tutorials
-- VR-Render
+Augmented-reality features
+============================
+
+Camera calibration
+***********************
+- Mono with OpenCV
+- Stereo with ARLcore
+
+.. raw:: html
+
+       <video width="800" height="450" controls>
+          <source src="../../pres/HHCamp_20170317/videos/arcalibration.ogv" >
+          Your browser does not support the video tag.
+       </video>
 
 ----
+
+:data-x: r-850
+:data-y: r0
+
+- Marker tracking with Aruco and ARAM
+
+.. image:: images/ar.gif
+           :width: 32%
+           :align: left
+           :class: left
+
+.. image:: images/droidtracking.gif
+           :width: 53%
+           :align: right
+           :class: right
+
+- Registration with VTK, PCL, etc...
+
+.. image:: images/artracking02.gif
+           :width: 53%
+           :align: center
+           :class: centered
+
+----
+
+:data-x: r550
+:data-y: r1700
+
+Advanced visualization
+=======================
+
+- Ogre backend (fw4spl-ogre)
+
+.. raw:: html
+
+       <video width="800" height="450" controls>
+          <source src="../../pres/HHCamp_20170317/videos/ogre.ogv" >
+          Your browser does not support the video tag.
+       </video>
+
+----
+
+:data-x: r-600
+:data-y: r0
+
+.. raw:: html
+
+       <video width="800" height="450" controls>
+          <source src="../../pres/HHCamp_20170317/videos/arbreathing-visu.mp4" >
+          Your browser does not support the video tag.
+       </video>
+
+----
+
+:data-x: r-600
+:data-y: r0
+
+.. raw:: html
+
+       <video width="800" height="450" controls>
+          <source src="../../pres/HHCamp_20170317/videos/mimp.ogv" >
+          Your browser does not support the video tag.
+       </video>
+
+
+----
+
+:data-y: r1700
+:data-x: r400
+
+Soft-body physics
+=====================
+
+- Bullet
+- Sofa
+
+.. raw:: html
+
+       <video width="800" height="450" controls>
+          <source src="../../pres/HHCamp_20170317/videos/arbreathing.ogv" >
+          Your browser does not support the video tag.
+       </video>
+
+----
+
+:data-x: r0
 
 others repositories :
 *************************
@@ -373,26 +553,48 @@ others repositories :
 
 :class: text-small
 
-Augmented-reality features
-============================
+Samples
+===============
 
-- AR with OpenCV, Aruco, ARAM
-- Tracking, Calibration, Registration, ...
-- Marker tracking
-- Mono/stereo
+Tutorials (around 15)
+*********************
+- Read an image, a mesh,
+- GUI,
+- Visualization,
+- Configuration launch,
+- Operate on a data,...
+
+Examples (around 10)
+**********************
+- Volume rendering,
+- Image processing,
+- Registration,
+- Activities,
+- Video tracking,...
 
 ----
 
-Soft-body physics
-=====================
+Applications
+=============
 
-- Bullet
-- Sofa
+VRRender
+***********
+- 2D Image viewer (DICOM files/PACS, Vtk,...)
+- Volume rendering
+- Reconstruction
+- DICOM image filtering
+
+ARCalibration
+*****************
+- Standalone application to calibrate camera
+- Mono/stereo
+- Hand-eye tool calibration
 
 ----
 
 :class: centered
 :data-scale: 2
+:data-y: r2700
 
 How to use and contribute
 ===========================
@@ -402,8 +604,6 @@ How to use and contribute
 :class: text-small
 
 :data-scale: 1
-:data-x: r0
-:data-y: r1500
 
 Getting started
 ==================================================================
@@ -414,7 +614,7 @@ Basics
 - GitHub `<http://fw4spl-org.github.io>`_
 - Documentation `<http://fw4spl-doc.readthedocs.org>`_
 - Developper blog `<http://fw4spl-org.github.io/fw4spl-blog>`_
-- #fw4spl on irc.freenode.net and `<http://fw4spl.slack.com>`_
+- #fw4spl on `<http://fw4spl.slack.com>`_
 
 Source
 ********************
@@ -433,7 +633,7 @@ Others
 
 :class: text-small
 :data-x: r0
-:data-y: r1500
+:data-y: r1700
 
 Future
 ===========================
