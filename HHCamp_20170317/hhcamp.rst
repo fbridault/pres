@@ -92,9 +92,10 @@ Create and maintain a range of applications
 
 Target application
 *******************
+- based on medical computer imaging
 - beyond the small research prototype
 - data storage/communication
-- hardware support
+- hardware support/deployment
 - robustness
 - productivity
 
@@ -134,12 +135,6 @@ Brief history
 Architecture
 =====================
 
-The three main concepts
-*************************
-- Components
-- Objects/Services
-- Signal/Slot communication
-
 Technology
 *************
 - Written in C++
@@ -147,23 +142,19 @@ Technology
 - Build with CMake
 - Cross-platform : Windows, Linux, MacOSX and Android
 
-----
-
-Components
-=====================
-
-- Also called *Bundle* (in OSGi)
-- Dynamic library, loaded on demand
-- Group services, by theme and/or by dependency
-- Examples: **ioVTK**, **uiImageQt**
+The three main concepts
+*************************
+- Objects/Services
+- Components
+- Signal/Slot communication
 
 ----
 
 Objects/Services
 =====================
 
-- Only one functionality (Read, Segment, Visualize...)
 - A service work on a set of data
+- Only one functionality (Read, Segment, Visualize...)
 - Class of services (reader, operator, renderer)
 - State pattern
 - Can be launched on any thread
@@ -185,12 +176,24 @@ Objects/Services
 .. note::
 	- transitions, on ne peut pas passer de configure à stop
 	- We need to store data into it
-
+	
 ----
 
 :data-x: r0
 :data-y: r1700
 :data-scale: 1
+
+Components
+=====================
+
+- Use only what you need
+- Also called *Bundle* (in OSGi)
+- Dynamic library, loaded on demand
+- Group services, by theme and/or by dependency
+- Examples: **ioVTK**, **uiImageQt**
+
+
+----
 
 Communication
 ==========================
