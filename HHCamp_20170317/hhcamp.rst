@@ -79,6 +79,7 @@ FW4SPL
 ----
 
 :data-y: r1700
+:class: text-medium
 
 Motivation
 ============
@@ -100,7 +101,7 @@ Target application
 
 ----
 
-:data-x: r30
+:data-x: r50
 :data-y: r200
 :data-scale: 0.5
 
@@ -109,7 +110,7 @@ Target application
 
 ----
 
-:data-x: r-30
+:data-x: r-50
 :data-y: r-200
 :data-scale: 1
 
@@ -127,6 +128,8 @@ Brief history
 - Developed both by IRCAD and IHU Strasbourg since 2013
 
 ----
+
+:class: text-medium
 
 Architecture
 =====================
@@ -172,7 +175,7 @@ Objects/Services
 ----
 
 :class: centered
-:data-x: r-500
+:data-x: r-550
 :data-y: r0
 :data-scale: 0.8
 
@@ -189,7 +192,7 @@ Objects/Services
 :data-y: r1700
 :data-scale: 1
 
-Signal/Slot communication
+Communication
 ==========================
 
 Signals/Slots (inspired by Qt)
@@ -214,25 +217,38 @@ Slot call
 XML configurations
 =====================
 
-- Most used interface to write applications in FW4SPL.
-- Static description of applications.
-- Allow to share data and services setups.
+- Most used interface to write applications in FW4SPL
+- Static description of applications
+- Allow to share data and services setups
 
 ----
 
 :data-scale: 0.75
-:data-x: r-400
+:data-x: r-500
 :data-y: r0
+:class: centered
 
 .. image:: images/xml.gif
-           :width: 62%
-           :align: left
-           :class: left
+           :width: 100%
+           :align: center
+           :class: centered
+
+----
+
+:data-scale: 0.5
+:data-x: r160
+:data-y: r350
 
 .. image:: images/tuto02.gif
            :width: 25%
            :align: right
            :class: right-center
+
+----
+
+:data-scale: 0.5
+:data-x: r0
+:data-y: r0
 
 ----
 
@@ -248,6 +264,7 @@ Features and applications
 
 :data-scale: 1
 :data-y: r2700
+:class: text-small
 
 Data
 ======
@@ -273,14 +290,7 @@ High-efficiency in-house data format
 
 ----
 
-:data-x: r-600
-:data-y: r0
-
-
-
-----
-
-:data-x: r600
+:data-x: r0
 :data-y: r1700
 
 User interface
@@ -303,7 +313,7 @@ Based on Qt
 
 ----
 
-:data-x: r-650
+:data-x: r-800
 :data-y: r0
 :class: noh1
 
@@ -320,7 +330,7 @@ User preferences
 
 ----
 
-:data-x: r650
+:data-x: r800
 :data-y: r1700
 
 Activities
@@ -335,7 +345,7 @@ Features
 
 ----
 
-:data-x: r-650
+:data-x: r-750
 :data-y: r0
 :class: noh1
 
@@ -369,7 +379,7 @@ Facilities
 
 ----
 
-:data-x: r1400
+:data-x: r1500
 :data-y: r1700
 :class: text-small
 
@@ -385,7 +395,7 @@ Basic visualization
 
 ----
 
-:data-x: r-400
+:data-x: r-450
 :data-y: r0
 
 .. raw:: html
@@ -398,7 +408,7 @@ Basic visualization
 ----
 
 :data-y: r1700
-:data-x: r300
+:data-x: r450
 
 Network
 ======================
@@ -442,8 +452,8 @@ Video support
 
 ----
 
-Augmented-reality features
-============================
+Augmented-reality
+===================
 
 Camera calibration
 ***********************
@@ -574,6 +584,8 @@ Examples (around 10)
 
 ----
 
+:class: text-medium
+
 Applications
 =============
 
@@ -627,7 +639,7 @@ Others
 *************
 
 - Repositories : fw4spl, fw4spl-ext, fw4spl-ar, fw4spl-ogre, ...
-- Debian Integration (Previous stable version 0.9.2)
+- Debian Integration (Older version 0.9.2)
 
 ----
 
