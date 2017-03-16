@@ -176,7 +176,7 @@ Objects/Services
 .. note::
 	- transitions, on ne peut pas passer de configure à stop
 	- We need to store data into it
-	
+
 ----
 
 :data-x: r0
@@ -301,7 +301,7 @@ User interface
 
 Based on Qt
 *************
-- Classic frames/menus/toolbars/widgets/layouts
+- Frames, dialogs, menus, toolbars, widgets, layouts
 - Style sheet support (CSS)
 
 .. image:: images/tutogui.gif
@@ -352,7 +352,7 @@ Features
 :data-y: r0
 :class: noh1
 
-Facilities
+Ergonomy
 *************
 - Selector
 - Wizard
@@ -361,7 +361,7 @@ Facilities
 .. raw:: html
 
        <video width="800" height="600" controls>
-          <source src="../../pres/HHCamp_20170317/videos/activity_selector.mp4" >
+          <source src="../../pres/HHCamp_20170317/videos/activity.ogv" >
           Your browser does not support the video tag.
        </video>
 
@@ -440,7 +440,7 @@ Video support
 - Webcam (QTMultimedia)
 - Video file/streaming (QTMultimedia/VLC)
 - Kinect/Sense/RealSense (not open-source yet :/ )
-
+- Synchronization with post-processing services
 
 .. image:: images/webcam.gif
            :width: 37%
@@ -519,7 +519,7 @@ Advanced visualization
 .. raw:: html
 
        <video width="800" height="450" controls>
-          <source src="../../pres/HHCamp_20170317/videos/arbreathing-visu.mp4" >
+          <source src="../../pres/HHCamp_20170317/videos/contextview.ogv" >
           Your browser does not support the video tag.
        </video>
 
@@ -557,13 +557,6 @@ Soft-body physics
 ----
 
 :data-x: r0
-
-others repositories :
-*************************
-- 4D synchronization - timeline
-
-----
-
 :class: text-small
 
 Samples
