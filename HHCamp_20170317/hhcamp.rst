@@ -92,7 +92,7 @@ Create and maintain a range of applications
 
 Target application
 *******************
-- based on medical computer imaging
+- based on medical imaging
 - beyond the small research prototype
 - data storage/communication
 - hardware support/deployment
@@ -348,7 +348,7 @@ Features
 
 ----
 
-:data-x: r-750
+:data-x: r-700
 :data-y: r0
 :class: noh1
 
@@ -382,7 +382,7 @@ Ergonomy
 
 ----
 
-:data-x: r1500
+:data-x: r1450
 :data-y: r1700
 :class: text-small
 
@@ -433,6 +433,7 @@ Network
 ----
 
 :data-x: r0
+:class: text-medium
 
 Video support
 ==============
@@ -454,6 +455,8 @@ Video support
 
 
 ----
+
+:class: text-medium
 
 Augmented-reality
 ===================
@@ -557,6 +560,26 @@ Soft-body physics
 ----
 
 :data-x: r0
+:class: text-medium
+
+Applications
+=============
+
+VRRender
+***********
+- 2D Image viewer (DICOM files/PACS, Vtk,...)
+- Volume rendering
+- Reconstruction
+- DICOM image filtering
+
+ARCalibration
+*****************
+- Standalone application to calibrate camera
+- Mono/stereo
+- Hand-eye tool calibration
+
+----
+
 :class: text-small
 
 Samples
@@ -580,23 +603,22 @@ Examples (around 10)
 
 ----
 
-:class: text-medium
+:class: text-small
+:data-x: r0
+:data-y: r1700
 
-Applications
+Future
 =============
 
-VRRender
-***********
-- 2D Image viewer (DICOM files/PACS, Vtk,...)
-- Volume rendering
-- Reconstruction
-- DICOM image filtering
-
-ARCalibration
-*****************
-- Standalone application to calibrate camera
-- Mono/stereo
-- Hand-eye tool calibration
+- Simplify API and code
+- Improve documentation (towards ISO13485 support)
+- **Improve installation process** (repository cloning, docker, binaries...)
+- Enhance C++11 support (C++14 ?)
+- Enhance embedded python
+- Enhance unittests
+- Support for **web** development
+- User interface markup language
+- New threading and GPU technics
 
 ----
 
@@ -614,7 +636,7 @@ How to use and contribute
 :data-scale: 1
 
 Getting started
-==================================================================
+==================
 
 Basics
 ******************
@@ -629,37 +651,18 @@ Source
 
 - Github : `<https://github.com/fw4spl-org>`_
 - Latest stable version : 11.0.4
-- Older version have been used successfully in a CE/FDA marked application.
+- Repositories : fw4spl, fw4spl-ext, fw4spl-ar, fw4spl-ogre
 
 Others
 *************
 
-- Repositories : fw4spl, fw4spl-ext, fw4spl-ar, fw4spl-ogre, ...
-- Debian Integration (Older version 0.9.2)
-
-----
-
-:class: text-small
-:data-x: r0
-:data-y: r1700
-
-Future
-===========================
-
-- Simplify API and code
-- Improve documentation (towards ISO13485 support)
-- **Improve installation process** (repository cloning, docker, binaries...)
-- Enhance C++11 support (C++14 ?)
-- Enhance embedded python
-- Enhance unittests
-- Support for **web** development
-- User interface markup language
-- New threading and GPU technics
+- Debian Integration (0.9.2 in Jessie, 11.0.4 in progress)
+- Older versions have been used successfully in a CE/FDA marked application.
 
 ----
 
 :class: centered
-:data-y: r1500
+:data-y: r1700
 
 Thank you !
 =============
